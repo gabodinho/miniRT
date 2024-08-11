@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:15:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/11 17:19:05 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/11 17:25:02 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	normalize(double tuple[4])
 	int		i;
 
 	length = sqrt(tuple[0]*tuple[0] + tuple[1]*tuple[1] + tuple[2]*tuple[2]);
-	i = 0;
-	while (i < 4)
-		tuple[i] = tuple[i++] / length;
+	i = -1;
+	while (++i < 4)
+		tuple[i] = tuple[i] / length;
 }
