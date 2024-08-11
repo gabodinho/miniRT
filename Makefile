@@ -6,7 +6,7 @@
 #    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/08/06 23:59:14 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/08/11 17:14:09 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ LIBFT	:= $(LIBFT_DIR)/libftprintf.a
 
 HEADERS	:= -I MLX42/include -I $(LIBFT_DIR) -I ./include
 LIBS	:= $(LIBMLX) $(LIBFT) -ldl -lglfw -lm
-SRCS	:= src/main.c \
+SRCS	:=	src/main.c src/matrix_mrt.c \
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
