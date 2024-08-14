@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   structs_minirt.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/11 16:24:05 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/14 21:39:20 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_MRT_H
 # define STRUCTS_MRT_H
+#include <stdbool.h>
+#include "ft_printf.h"
 
 typedef enum e_shape
 {
@@ -46,13 +48,14 @@ typedef struct s_object
 }	t_object;
 
 /*
-xs: intersection value;
+t: intersection value;
 obj: respective object
 */
 typedef struct s_intersect
 {
-	double		t;
-	t_object	*obj;
+	double				t;
+	t_object			*obj;
+	struct s_intersect	*next;
 }	t_intersect;
 
 /*
@@ -60,7 +63,8 @@ world contains an array of all the objects and the light information
 */
 typedef struct s_world
 {
-	t_object	**obj_arr;
+	t_object	**objects;
+	int			n_obj;
 	double		*light_point;
 	double		brightness;
 }	t_world;

@@ -6,7 +6,7 @@
 #    By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/08/13 16:01:19 by gabodinho        ###   ########.fr        #
+#    Updated: 2024/08/14 19:19:29 by gabodinho        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ HEADERS	:= -I MLX42/include -I $(LIBFT_DIR) -I ./include
 LIBS	:= $(LIBMLX) $(LIBFT) -ldl -lglfw -lm
 SRCS	:=	src/main.c \
 			src/vector_mrt.c \
+			src/invert_mrt.c \
+			src/matrix_mrt.c \
+			src/rays_mrt.c
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
