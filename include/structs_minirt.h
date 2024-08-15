@@ -3,17 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   structs_minirt.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/14 21:39:20 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/08/16 01:40:30 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_MRT_H
 # define STRUCTS_MRT_H
-#include <stdbool.h>
-#include "ft_printf.h"
+# include <stdbool.h>
+# include "ft_printf.h"
+# define EPSILON 0.001
+
 
 typedef enum e_shape
 {
@@ -43,7 +45,8 @@ typedef struct s_object
 	double*		n_vec;
 	double		diam;
 	double		height;
-	double**	transform;
+	double*		transform;
+	double*		inv_trans;
 	t_material	*material;
 }	t_object;
 

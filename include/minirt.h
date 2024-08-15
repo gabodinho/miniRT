@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/14 21:48:20 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/08/16 01:39:48 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,18 @@ double	*mat_mat_prod(double *m1, double *m2, int size);
 double  *mat_vec_prod(double *m, double *v);
 double	**ray(double *origin, double *direction);
 double	*position(double **ray, double t);
-void	intersect_sphere(double **ray, t_object *obj, t_intersect **lst);
-void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst);
-void	intersect_plane(double **ray, t_object *obj, t_intersect **lst);
+// void	intersect_sphere(double **ray, t_object *obj, t_intersect **lst);
+// void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst);
+// void	intersect_plane(double **ray, t_object *obj, t_intersect **lst);
 t_intersect	*intersect_world(t_world *w, double **ray);
-
+double	abs_f(double val);
+t_intersect	*find_hit(t_intersect *lst);
+void		free_ray(double **ray);
+double	*translate(double x, double y, double z);
+double	*scale(double f);
+double	*rot_x(double phi);
+double	*rot_y(double phi);
+double	*rot_z(double phi);
+double	**transform(double **ray, double *m);
 
 #endif

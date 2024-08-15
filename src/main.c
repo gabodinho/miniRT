@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/14 21:55:18 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/08/16 01:48:48 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+void	print_intersect(t_intersect *list)
+{
+	int	i;
+
+	i = 0;
+	while(list)
+	{
+		printf("obj %d: %d, with itersect val: %f\n", i++, list -> obj -> shape, list -> t);
+		list = list -> next;
+	}
+}
 
 void    print_vec(double *v, int size)
 {
@@ -30,6 +42,7 @@ void    print_vec(double *v, int size)
         str = "vector";
     printf("this is a %s: %f, %f, %f\n", str, v[0], v[1], v[2]);
 }
+
 
 int main(void)
 {
@@ -76,14 +89,29 @@ int main(void)
     double **r = ray(p, v);
     print_vec(position(r, 2.5), 0);
 	printf("last stop\n");
-	t_world *w;
-	w = malloc(sizeof(t_world));
-	t_object *obj;
-	obj = malloc(sizeof(t_object));
+
+	t_world *w = malloc(sizeof(t_world));
+	t_object *obj = malloc(sizeof(t_object));
 	obj -> shape = SPHERE;
-	w -> objects = &obj;
-	w -> n_obj = 1;
+	obj -> transform = scale(2.5);
+	obj -> inv_trans = invert(obj -> transform, 4);
+	t_object *obj2 = malloc(sizeof(t_object));
+	obj2 -> shape = PLANE;
+	obj2 -> transform = translate(1, 2, 3);
+	obj2 -> inv_trans = invert(obj2 -> transform, 4);
+	t_object *obj3 = malloc(sizeof(t_object));
+	obj3 -> shape = CYLNDR;
+	obj3 -> transform = rot_x(3.14);
+	obj3 -> inv_trans = invert(obj3 -> transform, 4);
+	w -> objects = malloc(sizeof(t_object *) * 3);
+	w->objects[0] = obj;
+	w->objects[1] = obj2;
+	w->objects[2] = obj3;
+	w -> n_obj = 3;
 	t_intersect *res = intersect_world(w, r);
-	printf("intersecti res: %f\n", res -> t);
+	print_intersect(res);
+    t_intersect *hit = find_hit(res);
+    printf("hit: %f\n", hit -> t);
+	// printf("intersecti res: %f\n", res -> t);
     return (0);
 }
