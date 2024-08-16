@@ -6,13 +6,14 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 01:39:48 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:49:52 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINIRT_H
 # define MINIRT_H
 
+#define _USE_MATH_DEFINES
 #include <math.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -50,5 +51,9 @@ double	*rot_x(double phi);
 double	*rot_y(double phi);
 double	*rot_z(double phi);
 double	**transform(double **ray, double *m);
+double	*substract_points(double *a, double *b);
+void	init_camera(t_camera *cam);
+double	**ray_for_pixel(t_camera *cam, int	x, int y);
+
 
 #endif

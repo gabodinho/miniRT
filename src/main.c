@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 01:48:48 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/17 00:09:17 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,18 @@ int main(void)
     t_intersect *hit = find_hit(res);
     printf("hit: %f\n", hit -> t);
 	// printf("intersecti res: %f\n", res -> t);
+
+    t_camera *cam;
+    cam = malloc(sizeof(t_camera));
+    cam -> vp_x = 0;
+    cam -> vp_y = 0;
+    cam -> vp_z = 0;
+    cam -> nv_x = 0;
+    cam -> nv_y = 0;
+    cam -> nv_z = -1;
+    cam -> field_of_view = 90;
+    init_camera(cam);
+    double ** ray = ray_for_pixel(cam, 0, 0);
+    print_vec(ray[1], 0);
     return (0);
 }

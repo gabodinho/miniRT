@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_mrt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:15:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/14 13:35:41 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/08/16 21:48:38 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	normalize(double tuple[4])
 
 	length = sqrt(tuple[0]*tuple[0] + tuple[1]*tuple[1] + tuple[2]*tuple[2]);
 	i = -1;
-	while (++i < 4)
+	while (++i < 3)
 		tuple[i] = tuple[i] / length;
 }
 
@@ -85,4 +85,10 @@ int	m2a(int size_j, int i, int j)
 	return (i * size_j + j);
 }
 
+double	*substract_points(double *a, double *b)
+{
+	double	*res;
 
+	res = vector(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+	return (res);
+}

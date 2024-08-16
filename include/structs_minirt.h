@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 01:40:30 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/16 23:50:59 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 # include <stdbool.h>
 # include "ft_printf.h"
 # define EPSILON 0.001
-
+# define HSIZE 201
+# define VSIZE 101
 
 typedef enum e_shape
 {
@@ -88,5 +89,21 @@ typedef struct s_comps
 	bool		inside;
 	t_object	*obj;
 }	t_comps;
+
+typedef struct s_camera
+{
+	double	vp_x;
+	double	vp_y;
+	double	vp_z;
+	double	nv_x;
+	double	nv_y;
+	double	nv_z;
+	double	field_of_view;
+	double	*transform;
+	double	*inv_trans;
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
+}	t_camera;
 
 #endif
