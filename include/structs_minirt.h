@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 00:37:49 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:10:50 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 # include <stdbool.h>
 # include "ft_printf.h"
 # define EPSILON 0.001
-# define HSIZE 201.00
-# define VSIZE 101.00
+# define HSIZE 401.00
+# define VSIZE 301.00
 # define DIFFUSE 0.9
 # define SPECULAR 0.9
 # define SHINE 150

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 14:33:32 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:06:10 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ static	void	get_colour(uint8_t *pixels, double *colour)
 		else if (colour[i] < 0)
 			*(pixels + i) = 0;
 		else
-			*(pixels + i) = (int) colour[i] * 255;
+			*(pixels + i) = (uint8_t) (colour[i] * 255);
+		// printf("%d, ", *(pixels + i));
+		// printf("%%d: %d, %%f: %f", (uint8_t) (colour[i] * 255), colour[i] * 255);
 	}
 	*(pixels + 3) = 255;
+	// printf("px: %d, %d, %d\n", *(pixels), *(pixels + 1), *(pixels + 2));
 	return ;
 }
 
