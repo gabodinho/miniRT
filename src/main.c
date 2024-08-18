@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 15:20:44 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:41:23 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,20 +164,20 @@ int main(void)
 	t_world *w2 = malloc(sizeof(t_world));
 	t_object *obj4 = malloc(sizeof(t_object));
 	obj4 -> shape = SPHERE;
-	obj4 -> transform = translate(-1, 0, 0);
+	obj4 -> transform = translate(0, 0, 0);
 	obj4 -> inv_trans = invert(obj4 -> transform, 4);
-	obj4 -> colour = point(1, 0.2, 1);
-	w2 -> amb_colour = point(0.1, 0.1, 0.1);
-	w2 -> light_bright = 0.8;
+	obj4 -> colour = point(1, 0, 0);
+	w2 -> amb_colour = point(0.4, 0.4, 0.4);
+	w2 -> light_bright = 0.9;
 	w2 -> n_obj = 1;
 	w2 -> objects = malloc(sizeof(t_object *) * 1);
 	w2->objects[0] = obj4;
-	w2 -> light_point = point(1, 2, -4);
+	w2 -> light_point = point(-5, 10, -10);
 	t_camera *cam;
     cam = malloc(sizeof(t_camera));
     cam -> vp_x = 0;
     cam -> vp_y = 0;
-    cam -> vp_z = -3;
+    cam -> vp_z = -2;
     cam -> nv_x = 0;
     cam -> nv_y = 0;
     cam -> nv_z = 1;

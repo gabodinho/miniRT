@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 15:06:10 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:38:46 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ t_comps	*prepare_comps(double t, double **ray, t_object *obj)
 		comps -> normal_vec = normal_at(obj, comps -> point_w);	//only for testing
 	comps -> eye_vec = ray[1];
 	vec_skal_prod(comps -> eye_vec, -1, 3);
-	if (dot_product(comps -> normal_vec, comps -> eye_vec) < 0)
-	{
-		comps -> inside = true;
-		vec_skal_prod(comps -> normal_vec, -1, 3);
-	}
-	else
-		comps -> inside = false;
+	// if (dot_product(comps -> normal_vec, comps -> eye_vec) < 0)
+	// {
+	// 	comps -> inside = true;
+	// 	vec_skal_prod(comps -> normal_vec, -1, 3);
+	// }
+	// else
+	// 	comps -> inside = false;
 	return (comps);
 }
 

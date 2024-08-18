@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 15:10:50 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:43:29 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define VSIZE 301.00
 # define DIFFUSE 0.9
 # define SPECULAR 0.9
-# define SHINE 150
+# define SHINE 10
 
 typedef enum e_shape
 {
