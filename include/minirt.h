@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 23:49:52 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 02:36:00 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #include <stdio.h>
 #include "ft_printf.h"
 #include "structs_minirt.h"
+#include <MLX42/MLX42.h>
 
 double	*vector(double a, double b, double c);
 double	*point(double a, double b, double c);
@@ -54,6 +55,19 @@ double	**transform(double **ray, double *m);
 double	*substract_points(double *a, double *b);
 void	init_camera(t_camera *cam);
 double	**ray_for_pixel(t_camera *cam, int	x, int y);
+// double	*normal_at(t_object *obj, double *p_w, double **ray);
+double	*reflect(double *in, double *normal);
+void	hadamard_prod(double *c1, double *c2);
+void	vec_skal_prod(double *v, double s, int size);
+double	*copy_vec(double *v, int size);
+double	*lighting(t_world *w, t_comps *comps);
+void	free_comps(t_comps *comps);
+void	free_intersect(t_intersect *xs);
+
+
+// to be deleted
+void    print_vec(double *v, int size);
+double	*normal_at(t_object *obj, double *p_w);
 
 
 #endif

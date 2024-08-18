@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/17 00:09:17 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 02:21:30 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,9 @@ int main(void)
     cam -> field_of_view = 90;
     init_camera(cam);
     double ** ray = ray_for_pixel(cam, 0, 0);
+    printf("origin:\n");
+    print_vec(ray[0], 0);
+    printf("direction:\n");
     print_vec(ray[1], 0);
     return (0);
 }

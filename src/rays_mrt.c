@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:19:41 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/16 00:47:50 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/17 20:22:55 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ double	*position(double **ray, double t)
 	ray[0][1] + t * ray[1][1],
 	ray[0][2] + t * ray[1][2]));
 }
+
 
 

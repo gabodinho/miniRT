@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/17 00:08:55 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/17 20:05:20 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	calc_pixel_size(t_camera *cam)
 		cam -> half_height = half_view;
 	}
 	cam -> pixel_size = cam -> half_width * 2 / HSIZE;
-	printf("pixel size: %f\n", cam -> pixel_size);
+	// printf("pixel size: %f\n", cam -> pixel_size);
 }
 
 /*
@@ -81,6 +81,8 @@ void	init_camera(t_camera *cam)
 	direction = vector(cam -> nv_x, cam -> nv_y, cam -> nv_z);
 	up = vector(0, 1, 0);
 	cam -> transform = view_transform(from, direction, up);
+	// printf("camera transform:\n");
+	// print_vec(cam -> transform, 4);
 	cam -> inv_trans = invert(cam -> transform, 4);
 	free(from);
 	free(direction);
@@ -96,13 +98,19 @@ double	**ray_for_pixel(t_camera *cam, int	x, int y)
 	double	*direction;
 	double	**ray;
 
-	x_world = cam -> half_width - (x + 0.5) * cam -> pixel_size;
-	y_world = cam -> half_height - (y + 0.5) * cam -> pixel_size;
+	x_world = cam -> half_width - ((x + 0.5) * cam -> pixel_size);
+	y_world = cam -> half_height - ((y + 0.5) * cam -> pixel_size);
 	ray = malloc(sizeof(double *) * 2);
 	pixel = point(x_world, y_world, -1);
 	origin = point(0, 0, 0);
 	ray[0] = mat_vec_prod(cam -> inv_trans, origin);
+	// printf("transformed origin: \n");
+	// print_vec(ray[0], 0);
+	// printf("transform matrix check:\n");
+	// print_vec(mat_mat_prod(cam -> transform, cam -> inv_trans, 4), 4);
 	ray[1] = mat_vec_prod(cam -> inv_trans, pixel);
+	// printf("transformed pixel: \n");
+	// print_vec(ray[1], 0);
 	direction = substract_points(ray[1], ray[0]);
 	normalize(direction);
 	free(ray[1]);

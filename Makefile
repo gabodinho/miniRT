@@ -6,7 +6,7 @@
 #    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/08/16 21:46:54 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/08/17 22:36:54 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,10 @@ SRCS	:=	src/main.c \
 			src/aux_mrt.c \
 			src/intersect_mrt.c \
 			src/intersect2_mrt.c \
-			src/camera_mrt.c
+			src/camera_mrt.c \
+			src/normal_mrt.c \
+			src/lighting_mrt.c \
+			src/render_mrt.c
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 

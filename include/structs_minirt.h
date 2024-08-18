@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 23:50:59 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 00:37:49 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 # include <stdbool.h>
 # include "ft_printf.h"
 # define EPSILON 0.001
-# define HSIZE 201
-# define VSIZE 101
+# define HSIZE 201.00
+# define VSIZE 101.00
+# define DIFFUSE 0.9
+# define SPECULAR 0.9
+# define SHINE 150
 
 typedef enum e_shape
 {
@@ -25,30 +28,22 @@ typedef enum e_shape
 	CYLNDR
 }	t_shape;
 
-// material properties regarding light reflection
-typedef struct s_material
-{
-	double	ambient;
-	double	diffuse;
-	double	specular;
-	double	shine;
-}	t_material;
 
 /*
 geometric, positional and material properties;
 not all values for all shapes!
+colour vetors are being set up during initialisation: rgb val / 255
 */
 typedef struct s_object
 {
 	t_shape		shape;
-	int			rgba;
 	double*		point;
 	double*		n_vec;
 	double		diam;
 	double		height;
 	double*		transform;
 	double*		inv_trans;
-	t_material	*material;
+	double	*colour;
 }	t_object;
 
 /*
@@ -63,14 +58,17 @@ typedef struct s_intersect
 }	t_intersect;
 
 /*
-world contains an array of all the objects and the light information
+world contains an array of all the objects and the light information.
+colour vetors are being set up during initialisation: rgb val / 255
+amb_colour = amb_colour * ambient_intensity.
 */
 typedef struct s_world
 {
 	t_object	**objects;
 	int			n_obj;
 	double		*light_point;
-	double		brightness;
+	double		light_bright;
+	double		*amb_colour;
 }	t_world;
 
 /*
