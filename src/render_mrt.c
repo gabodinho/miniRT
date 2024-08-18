@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 02:36:28 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:33:32 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,21 @@
 
 static	void	get_colour(uint8_t *pixels, double *colour)
 {
-	int rgba = *((int *) colour);	// only for testing puposes
+	int	i;
 
 	if (!pixels)
 		return ;
-	*pixels = (rgba >> 24) & 0xFF;
-	*(pixels + 1) = (rgba >> 16) & 0xFF;
-	*(pixels + 2) = (rgba >> 8) & 0xFF;
-	*(pixels + 3) = (rgba) & 0xFF;
+	i = -1;
+	while (++i < 3)
+	{
+		if (colour[i] > 1)
+			*(pixels + i) = 255;
+		else if (colour[i] < 0)
+			*(pixels + i) = 0;
+		else
+			*(pixels + i) = (int) colour[i] * 255;
+	}
+	*(pixels + 3) = 255;
 	return ;
 }
 

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 02:21:30 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/18 14:38:23 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,18 @@ void    print_vec(double *v, int size)
 
 	if (!v)
 		return;
-    if (size)
+    if (size > 0)
     {
         for (int i = 0; i < size; i++)
             printf("row %d: %f %f %f %f\n", i, v[i*size], v[size*i+1], v[size*i+2], v[size*i+3]);
         return;
     }
+	else if (size == -1)
+	{
+		str = "c";
+		printf("%s: %f, %f, %f\n", str, v[0], v[1], v[2]);
+		return ;
+	}
     if (v[3])
         str = "point";
     else
@@ -43,7 +49,26 @@ void    print_vec(double *v, int size)
     printf("this is a %s: %f, %f, %f\n", str, v[0], v[1], v[2]);
 }
 
+void    test_colour_at(t_world *w, t_camera *c)
+{
+	int		i;
+	int		j;
+	double	*colour;
 
+	i = -1;
+	while (++i < HSIZE)
+	{
+		j = -1;
+		while (++j < VSIZE)
+		{
+			colour = color_at(w, ray_for_pixel(c, i, j));
+			printf("x,y: %d,%d ", i, j);
+			print_vec(colour, -1);
+			free(colour);
+		}
+	}
+}
+/*
 int main(void)
 {
     int c;
@@ -129,5 +154,42 @@ int main(void)
     print_vec(ray[0], 0);
     printf("direction:\n");
     print_vec(ray[1], 0);
+    return (0);
+}
+*/
+
+int main(void)
+{
+	printf("test coulour_at:\n");
+	t_world *w2 = malloc(sizeof(t_world));
+	t_object *obj4 = malloc(sizeof(t_object));
+	obj4 -> shape = SPHERE;
+	obj4 -> transform = scale(2.5);
+	obj4 -> inv_trans = invert(obj4 -> transform, 4);
+	obj4 -> colour = point(1, 0.2, 1);
+	w2 -> amb_colour = point(1, 1, 1);
+	w2 -> light_bright = 0.8;
+	w2 -> n_obj = 1;
+	w2 -> objects = malloc(sizeof(t_object *) * 1);
+	w2->objects[0] = obj4;
+	w2 -> light_point = point(-1, 4, -2);
+	t_camera *cam;
+    cam = malloc(sizeof(t_camera));
+    cam -> vp_x = 0;
+    cam -> vp_y = 0;
+    cam -> vp_z = 0;
+    cam -> nv_x = 0;
+    cam -> nv_y = 0;
+    cam -> nv_z = -1;
+    cam -> field_of_view = 90;
+    init_camera(cam);
+	// test_colour_at(w2, cam);
+
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
+	image = mlx_new_image(mlx, HSIZE, VSIZE);
+	render(w2, cam, image);
+	mlx_image_to_window(mlx, image, 0, 0);
     return (0);
 }
