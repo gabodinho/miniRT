@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_mrt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:15:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/13 16:01:27 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/08/16 21:48:38 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,46 @@ void	normalize(double tuple[4])
 
 	length = sqrt(tuple[0]*tuple[0] + tuple[1]*tuple[1] + tuple[2]*tuple[2]);
 	i = -1;
-	while (++i < 4)
+	while (++i < 3)
 		tuple[i] = tuple[i] / length;
+}
+
+double	dot_product(double *v1, double *v2)
+{
+	if (v1[3] || v2[3])
+	{
+		printf("only vectors are allowed!\n");
+		return (-1);
+	}
+	return (v1[0] * v2[0] + v1[1] * v2[1] + v1[2] * v2[2]);
+}
+
+double	*cross_product(double *v1, double *v2)
+{
+	double	a;
+	double	b;
+	double	c;
+
+	if (v1[3] || v2[3])
+	{
+		printf("only vectors are allowed!\n");
+		return (NULL);
+	}
+	a = (v1[1] * v2[2]) - (v1[2] * v2[1]);
+	b = v1[2] * v2[0] - v1[0] * v2[2];
+	c = v1[0] * v2[1] - v1[1] * v2[0];
+	return (vector(a, b, c));
+}
+
+int	m2a(int size_j, int i, int j)
+{
+	return (i * size_j + j);
+}
+
+double	*substract_points(double *a, double *b)
+{
+	double	*res;
+
+	res = vector(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+	return (res);
 }

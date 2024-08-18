@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+         #
+#    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/08/13 16:01:19 by gabodinho        ###   ########.fr        #
+#    Updated: 2024/08/17 22:36:54 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	:= miniRT 
+NAME	:= miniRT
 CFLAGS  := -g -O0 -Wall -Werror -Wextra -pthread -Ofast
 CC		:= gcc
 
@@ -26,6 +26,17 @@ HEADERS	:= -I MLX42/include -I $(LIBFT_DIR) -I ./include
 LIBS	:= $(LIBMLX) $(LIBFT) -ldl -lglfw -lm
 SRCS	:=	src/main.c \
 			src/vector_mrt.c \
+			src/invert_mrt.c \
+			src/matrix_mrt.c \
+			src/matrix2_mrt.c \
+			src/rays_mrt.c \
+			src/aux_mrt.c \
+			src/intersect_mrt.c \
+			src/intersect2_mrt.c \
+			src/camera_mrt.c \
+			src/normal_mrt.c \
+			src/lighting_mrt.c \
+			src/render_mrt.c
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
@@ -34,7 +45,7 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJS)
 	$(CC) $(OBJS) $(LIBS) $(HEADERS) -o $(NAME)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR) 
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -o $@ -c $< $(HEADERS)
 
 $(OBJ_DIR):
