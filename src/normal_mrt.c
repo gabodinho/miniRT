@@ -6,15 +6,41 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 20:20:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 02:26:03 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 02:30:34 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// static double	*cylinder_normal(t_object *obj, double *p_w)
+static double	*cylinder_normal(t_object *obj, double *p_w)
+{
+	double	*n_o;
+	double	*n_w;
 
-// static double	*plane_normal(t_object *obj, double *p_w, double **ray)
+	n_o = vector(p_w[0], 0, p_w[2]);
+	transpose(obj -> inv_trans, 4);
+	n_w = mat_vec_prod(obj -> inv_trans, n_o);
+	n_w[3] = 0;
+	transpose(obj -> inv_trans, 4);
+	normalize(n_w);
+	free(n_o);
+	return (n_w);
+}
+
+static double	*plane_normal(t_object *obj)
+{
+	double	*n_o;
+	double	*n_w;
+
+	n_o = vector(0, 1, 0);
+	transpose(obj -> inv_trans, 4);
+	n_w = mat_vec_prod(obj -> inv_trans, n_o);
+	n_w[3] = 0;
+	transpose(obj -> inv_trans, 4);
+	normalize(n_w);
+	free(n_o);
+	return (n_w);
+}
 
 static double	*sphere_normal(t_object *obj, double *p_w)
 {
@@ -35,12 +61,12 @@ static double	*sphere_normal(t_object *obj, double *p_w)
 double	*normal_at(t_object *obj, double *p_w)
 // double	*normal_at(t_object *obj, double *p_w, double **ray)
 {
-	// if (obj -> shape == SPHERE)
+	if (obj -> shape == SPHERE)
 		return (sphere_normal(obj, p_w));
-	// else if (obj -> shape == PLANE)
-	// 	return (plane_normal(obj, p_w, ray));
-	// else
-	// 	return (cylinder_normal(obj, p_w));
+	else if (obj -> shape == CYLNDR)
+		return (cylinder_normal(obj, p_w));
+	else
+		return (plane_normal(obj));
 }
 
 double	*reflect(double *in, double *normal)
