@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:15:46 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:52:11 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:24:30 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ double	*lighting(t_world *w, t_comps *comps)
 	eff_col = point(obj -> colour[0], obj -> colour[1], obj -> colour[2]);
 	vec_skal_prod(eff_col, w -> light_bright, 3);
 	ambient = get_ambient(copy_vec(eff_col, 3), w);
+	if (is_shadowed(w, comps -> over_point))
+		return (ambient);
 	diffuse = get_diffuse(eff_col,
 		substract_points(w -> light_point, comps -> point_w), comps);
 	specular = get_specular(

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 20:20:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:30:34 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 00:40:05 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,24 @@ static double	*cylinder_normal(t_object *obj, double *p_w)
 {
 	double	*n_o;
 	double	*n_w;
+	double	dist;
+	double	*p_o;
 
-	n_o = vector(p_w[0], 0, p_w[2]);
+	p_o = mat_vec_prod(obj -> inv_trans, p_w);
+	dist = p_o[0] * p_o[0] + p_o[2] * p_o[2];
+	if (dist < 1 && p_o[1] >= 1 - EPSILON)
+		n_o = vector(0, 1, 0);
+	else if (dist < 1 && p_o[1] <= 0 - EPSILON)
+		n_o = vector(0, -1, 0);
+	else
+		n_o = vector(p_o[0], 0, p_o[2]);
 	transpose(obj -> inv_trans, 4);
 	n_w = mat_vec_prod(obj -> inv_trans, n_o);
 	n_w[3] = 0;
 	transpose(obj -> inv_trans, 4);
 	normalize(n_w);
 	free(n_o);
+	free(p_o);
 	return (n_w);
 }
 
@@ -59,7 +69,6 @@ static double	*sphere_normal(t_object *obj, double *p_w)
 }
 
 double	*normal_at(t_object *obj, double *p_w)
-// double	*normal_at(t_object *obj, double *p_w, double **ray)
 {
 	if (obj -> shape == SPHERE)
 		return (sphere_normal(obj, p_w));

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 14:34:24 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 00:20:14 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ double	abs_f(double val);
 t_intersect	*find_hit(t_intersect *lst);
 void		free_ray(double **ray);
 double	*translate(double x, double y, double z);
-double	*scale(double f);
+double	*scale(double x, double y, double z);
 double	*rot_x(double phi);
 double	*rot_y(double phi);
 double	*rot_z(double phi);
@@ -63,8 +63,10 @@ double	*copy_vec(double *v, int size);
 double	*lighting(t_world *w, t_comps *comps);
 void	free_comps(t_comps *comps);
 void	free_intersect(t_intersect *xs);
-double	*color_at(t_world *w, double **ray);
 void	render(t_world *w, t_camera *c, mlx_image_t *img);
+int		count_lst(t_intersect *lst);
+int	is_shadowed(t_world *w, double *p);
+
 
 
 // to be deleted

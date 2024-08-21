@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:15:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 01:44:07 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:43:53 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,15 +80,4 @@ double	*cross_product(double *v1, double *v2)
 	return (vector(a, b, c));
 }
 
-int	m2a(int size_j, int i, int j)
-{
-	return (i * size_j + j);
-}
 
-double	*substract_points(double *a, double *b)
-{
-	double	*res;
-
-	res = vector(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
-	return (res);
-}

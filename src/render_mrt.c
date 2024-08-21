@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:10:00 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:48:02 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,23 +27,27 @@ static	void	get_colour(uint8_t *pixels, double *colour)
 			*(pixels + i) = 0;
 		else
 			*(pixels + i) = (uint8_t) (colour[i] * 255);
-		// printf("%d, ", *(pixels + i));
-		// printf("%%d: %d, %%f: %f", (uint8_t) (colour[i] * 255), colour[i] * 255);
 	}
 	*(pixels + 3) = 255;
-	// printf("px: %d, %d, %d\n", *(pixels), *(pixels + 1), *(pixels + 2));
 	return ;
 }
 
-t_comps	*prepare_comps(double t, double **ray, t_object *obj)
+static void	calculate_op(t_comps *comps)
+{
+	comps -> over_point = point(
+		comps -> point_w[0] + EPSILON * comps -> normal_vec[0],
+		comps -> point_w[1] + EPSILON * comps -> normal_vec[1],
+		comps -> point_w[2] + EPSILON * comps -> normal_vec[2]);
+}
+
+static t_comps	*prepare_comps(double t, double **ray, t_object *obj)
 {
 	t_comps	*comps;
 
 	comps = malloc(sizeof(t_comps));
 	comps -> point_w = position(ray, t);
 	comps -> obj = obj;
-	// comps -> normal_vec = normal_at(obj, comps -> point_w, ray);		original
-		comps -> normal_vec = normal_at(obj, comps -> point_w);	//only for testing
+	comps -> normal_vec = normal_at(obj, comps -> point_w);
 	comps -> eye_vec = copy_vec(ray[1], 4);
 	vec_skal_prod(comps -> eye_vec, -1, 3);
 	if (dot_product(comps -> normal_vec, comps -> eye_vec) < 0)
@@ -53,11 +57,11 @@ t_comps	*prepare_comps(double t, double **ray, t_object *obj)
 	}
 	else
 		comps -> inside = false;
+	calculate_op(comps);
 	return (comps);
 }
 
-
-double	*color_at(t_world *w, double **ray)
+static double	*color_at(t_world *w, double **ray)
 {
 	t_intersect	*xs;
 	t_intersect	*hit;
@@ -68,7 +72,7 @@ double	*color_at(t_world *w, double **ray)
 	hit = find_hit(xs);
 	if (hit)
 	{
-		comps = prepare_comps(xs -> t, ray, hit -> obj);
+		comps = prepare_comps(hit -> t, ray, hit -> obj);
 		colour = lighting(w, comps);
 		free_comps(comps);
 	}
@@ -100,3 +104,15 @@ void	render(t_world *w, t_camera *c, mlx_image_t *img)
 		}
 	}
 }
+
+/*
+void	print_xs(t_intersect *xs)
+{
+	while (xs)
+	{
+		printf("%f ", xs -> t);
+		xs = xs -> next;
+	}
+	printf("\n");
+}
+*/

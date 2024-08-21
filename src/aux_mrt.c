@@ -6,47 +6,20 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:58:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:08:59 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 00:18:36 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double	abs_f(double val)
-{
-	if (val < 0)
-		return (val * -1);
-	else
-		return (val);
-}
+// double	abs_f(double val)
+// {
+// 	if (val < 0)
+// 		return (val * -1);
+// 	else
+// 		return (val);
+// }
 
-void	free_comps(t_comps *comps)
-{
-	free(comps -> point_w);
-	free(comps -> normal_vec);
-	free(comps -> eye_vec);
-	free(comps);
-}
-
-void	free_intersect(t_intersect *xs)
-{
-	t_intersect	*ptr;
-
-	ptr = xs;
-	while (xs)
-	{
-		ptr = xs;
-		xs = xs -> next;
-		free(ptr);
-	}
-}
-
-void	free_ray(double **ray)
-{
-	free(ray[0]);
-	free(ray[1]);
-	free(ray);
-}
 /*
 no free necessary for the result;
 */
@@ -75,5 +48,14 @@ double	*copy_vec(double *v, int size)
 	i = -1;
 	while(++i < size)
 		res[i] = v[i];
+	return (res);
+}
+
+
+double	*substract_points(double *a, double *b)
+{
+	double	*res;
+
+	res = vector(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:39:43 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 00:41:09 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void    print_vec(double *v, int size)
     printf("this is a %s: %f, %f, %f\n", str, v[0], v[1], v[2]);
 }
 
+/*
 void    test_colour_at(t_world *w, t_camera *c)
 {
 	int		i;
@@ -68,127 +69,50 @@ void    test_colour_at(t_world *w, t_camera *c)
 		}
 	}
 }
-/*
-int main(void)
-{
-    int c;
-    double *id_mat;
-
-    c = write(1, "hello world\n", 12);
-    c++;
-    double *v = vector(1, 2, 3);
-    double *p = point(0.5, 0.5, 0);
-    print_vec(p, 0);
-    print_vec(v, 0);
-    // normalize(p);
-    // normalize(v);
-    // print_vec(p, 0);
-    // print_vec(v, 0);
-    printf("dot product: %f\n", dot_product(v, p));
-    double *v2 = cross_product(p, v);
-    print_vec(v2, 0);
-    id_mat = identity_matrix(4);
-	id_mat[1] = 5;
-	id_mat[3] = 15;
-	id_mat[6] = 3;
-	id_mat[7] = -5;
-	id_mat[11] = 1.9;
-    // print_vec(id_mat, 4);
-    transpose(id_mat, 4);
-    print_vec(id_mat, 4);
-	// printf("submatrix:\n");
-	// double *sub = submatrix(id_mat, 4, 3, 3);
-	// print_vec(sub, 3);
-    // printf("minor: %f\n", det2x2(submatrix(sub, 3, 0, 2)));
-    // double test_mat[16] = {-2, -8, 3, 5, -3, 1, 7, 3, 1, 2, -9, 6, -6, 7, 7, -9};
-    // printf("cofactor: %f\n", cofactor(test_mat, 4, 0, 3));
-    // printf("det: %f\n", determinant(test_mat, 3));
-    double m2[16] = {8, -5, 9, 2, 7, 5, 6, 1, -6, 0, 9, 6, -3, 0, -9, -4};
-    print_vec(m2, 4);
-    // double *m3 = invert(m2, 4);
-    // printf("invert: \n");
-    // print_vec(m3, 4);
-    double *m4 = mat_mat_prod(m2, id_mat, 4);
-    print_vec(m4, 4);
-    print_vec(mat_vec_prod(m4, v), 0);
-    double **r = ray(p, v);
-    print_vec(position(r, 2.5), 0);
-	printf("last stop\n");
-
-	t_world *w = malloc(sizeof(t_world));
-	t_object *obj = malloc(sizeof(t_object));
-	obj -> shape = SPHERE;
-	obj -> transform = scale(2.5);
-	obj -> inv_trans = invert(obj -> transform, 4);
-	t_object *obj2 = malloc(sizeof(t_object));
-	obj2 -> shape = PLANE;
-	obj2 -> transform = translate(1, 2, 3);
-	obj2 -> inv_trans = invert(obj2 -> transform, 4);
-	t_object *obj3 = malloc(sizeof(t_object));
-	obj3 -> shape = CYLNDR;
-	obj3 -> transform = rot_x(3.14);
-	obj3 -> inv_trans = invert(obj3 -> transform, 4);
-	w -> objects = malloc(sizeof(t_object *) * 3);
-	w->objects[0] = obj;
-	w->objects[1] = obj2;
-	w->objects[2] = obj3;
-	w -> n_obj = 3;
-	t_intersect *res = intersect_world(w, r);
-	print_intersect(res);
-    t_intersect *hit = find_hit(res);
-    printf("hit: %f\n", hit -> t);
-	// printf("intersecti res: %f\n", res -> t);
-
-    t_camera *cam;
-    cam = malloc(sizeof(t_camera));
-    cam -> vp_x = 0;
-    cam -> vp_y = 0;
-    cam -> vp_z = 0;
-    cam -> nv_x = 0;
-    cam -> nv_y = 0;
-    cam -> nv_z = -1;
-    cam -> field_of_view = 90;
-    init_camera(cam);
-    double ** ray = ray_for_pixel(cam, 0, 0);
-    printf("origin:\n");
-    print_vec(ray[0], 0);
-    printf("direction:\n");
-    print_vec(ray[1], 0);
-    return (0);
-}
 */
 
 int main(void)
 {
-	printf("test coulour_at:\n");
 	t_world *w2 = malloc(sizeof(t_world));
-	t_object *obj4 = malloc(sizeof(t_object));
-	obj4 -> shape = SPHERE;
-	obj4 -> transform = translate(0, 0, 0);
-	obj4 -> inv_trans = invert(obj4 -> transform, 4);
-	obj4 -> colour = point(0.5, 0, 0);
+	// t_object *obj4 = malloc(sizeof(t_object));
+	// obj4 -> shape = SPHERE;
+	// obj4 -> transform = translate(-1, 0.5, 0);
+	// obj4 -> inv_trans = invert(obj4 -> transform, 4);
+	// obj4 -> colour = point(0.5, 0, 0);
 	// t_object *obj2 = malloc(sizeof(t_object));
 	// obj2 -> shape = PLANE;
-	// obj2 -> transform = identity_matrix(4);
+	// // keep in mind the order of the transformations!!
+	// double *m = rot_x(M_PI / 2);
+	// double *m2 = translate(0, 0, 2.99);
+	// obj2 -> transform = mat_mat_prod(m2, m, 4);
+	// // print_vec(obj2 -> transform, 4);
 	// obj2 -> inv_trans = invert(obj2 -> transform, 4);
-	// obj2 -> colour = point(1, 1, 0);
-	// t_object *obj3 = malloc(sizeof(t_object));
-	// obj3 -> shape = CYLNDR;
-	// obj3 -> transform = translate(0.5, 0, 0);
-	// obj3 -> inv_trans = invert(obj3 -> transform, 4);
-	// obj3 -> colour = point(0, 1, 1);
+	// // print_vec(obj2 -> inv_trans, 4);
+	// // print_vec(mat_mat_prod(obj2 -> transform, obj2 -> inv_trans, 4), 4);
+	// obj2 -> colour = point(0.5, 0.5, 0.5);
+	// t_object *obj1 = malloc(sizeof(t_object));
+	// obj1 -> shape = PLANE;
+	// obj1 -> transform = translate(0, -0.5, 0);
+	// obj1 -> inv_trans = invert(obj1 -> transform, 4);
+	// obj1 -> colour = point(0, 0.5, 1);
+	t_object *obj3 = malloc(sizeof(t_object));
+	obj3 -> shape = CYLNDR;
+	obj3 -> transform = rot_x(M_PI * 2);
+	obj3 -> inv_trans = invert(obj3 -> transform, 4);
+	obj3 -> colour = point(0, 1, 1);
 	w2 -> amb_colour = point(0.6, 0.6, 0.6);
 	w2 -> light_bright = 0.9;
-	w2 -> light_point = point(-5, 10, -10);
+	w2 -> light_point = point(-5, 5, -10);
 	w2 -> n_obj = 1;
 	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
-	w2->objects[0] = obj4;
+	// w2->objects[0] = obj4;
 	// w2->objects[1] = obj2;
-	// w2->objects[2] = obj3;
+	// w2->objects[2] = obj1;
+	w2->objects[0] = obj3;
 	t_camera *cam;
     cam = malloc(sizeof(t_camera));
     cam -> vp_x = 0;
-    cam -> vp_y = 0.5;
+    cam -> vp_y = 0;
     cam -> vp_z = -3;
     cam -> nv_x = 0;
     cam -> nv_y = 0;
