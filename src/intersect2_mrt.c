@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect2_mrt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:23:27 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 01:29:09 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:17:11 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

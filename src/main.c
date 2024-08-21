@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:39:43 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:16:44 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,11 +167,17 @@ int main(void)
 	obj4 -> transform = translate(0, 0, 0);
 	obj4 -> inv_trans = invert(obj4 -> transform, 4);
 	obj4 -> colour = point(0.5, 0, 0);
-	// t_object *obj2 = malloc(sizeof(t_object));
-	// obj2 -> shape = PLANE;
-	// obj2 -> transform = identity_matrix(4);
-	// obj2 -> inv_trans = invert(obj2 -> transform, 4);
-	// obj2 -> colour = point(1, 1, 0);
+	t_object *obj2 = malloc(sizeof(t_object));
+	obj2 -> shape = PLANE;
+	double *m = mat_mat_prod(rot_x(M_PI / 2), translate(0, 0, 2), 4);
+	obj2 -> transform = m;
+	obj2 -> inv_trans = invert(obj2 -> transform, 4);
+	obj2 -> colour = point(0.5, 0.5, 0.5);
+	t_object *obj1 = malloc(sizeof(t_object));
+	obj1 -> shape = PLANE;
+	obj1 -> transform = translate(0, 0, 0);
+	obj1 -> inv_trans = invert(obj1 -> transform, 4);
+	obj1 -> colour = point(0, 0.5, 1);
 	// t_object *obj3 = malloc(sizeof(t_object));
 	// obj3 -> shape = CYLNDR;
 	// obj3 -> transform = translate(0.5, 0, 0);
@@ -180,11 +186,11 @@ int main(void)
 	w2 -> amb_colour = point(0.6, 0.6, 0.6);
 	w2 -> light_bright = 0.9;
 	w2 -> light_point = point(-5, 10, -10);
-	w2 -> n_obj = 1;
+	w2 -> n_obj = 3;
 	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
 	w2->objects[0] = obj4;
-	// w2->objects[1] = obj2;
-	// w2->objects[2] = obj3;
+	w2->objects[1] = obj2;
+	w2->objects[2] = obj1;
 	t_camera *cam;
     cam = malloc(sizeof(t_camera));
     cam -> vp_x = 0;

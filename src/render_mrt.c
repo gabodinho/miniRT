@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_mrt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:10:00 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 17:18:42 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ t_comps	*prepare_comps(double t, double **ray, t_object *obj)
 	comps = malloc(sizeof(t_comps));
 	comps -> point_w = position(ray, t);
 	comps -> obj = obj;
-	// comps -> normal_vec = normal_at(obj, comps -> point_w, ray);		original
-		comps -> normal_vec = normal_at(obj, comps -> point_w);	//only for testing
+		comps -> normal_vec = normal_at(obj, comps -> point_w);
 	comps -> eye_vec = copy_vec(ray[1], 4);
 	vec_skal_prod(comps -> eye_vec, -1, 3);
 	if (dot_product(comps -> normal_vec, comps -> eye_vec) < 0)
@@ -56,6 +55,16 @@ t_comps	*prepare_comps(double t, double **ray, t_object *obj)
 	return (comps);
 }
 
+
+// void	print_xs(t_intersect *xs)
+// {
+// 	while (xs)
+// 	{
+// 		printf("%f ", xs -> t);
+// 		xs = xs -> next;
+// 	}
+// 	// printf("\n");
+// }
 
 double	*color_at(t_world *w, double **ray)
 {
