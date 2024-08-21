@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 01:36:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 01:38:04 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 00:19:56 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ double	*translate(double x, double y, double z)
 	return (m);
 }
 
-double	*scale(double f)
+double	*scale(double x, double y, double z)
 {
 	double	*m;
 
 	m = identity_matrix(4);
-	m[m2a(4, 0, 0)] = f;
-	m[m2a(4, 1, 1)] = f;
-	m[m2a(4, 2, 2)] = f;
+	m[m2a(4, 0, 0)] = x;
+	m[m2a(4, 1, 1)] = y;
+	m[m2a(4, 2, 2)] = z;
 	return (m);
 }
 

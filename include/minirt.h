@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 20:47:10 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 00:20:14 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ double	abs_f(double val);
 t_intersect	*find_hit(t_intersect *lst);
 void		free_ray(double **ray);
 double	*translate(double x, double y, double z);
-double	*scale(double f);
+double	*scale(double x, double y, double z);
 double	*rot_x(double phi);
 double	*rot_y(double phi);
 double	*rot_z(double phi);

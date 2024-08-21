@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:15:22 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 18:59:52 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 00:21:59 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,77 @@ static void	append_intersect(t_intersect **lst, double *xs, t_object *obj)
 	ptr -> next = new1;
 }
 
+static int	check_cap(double **ray, double t)
+{
+	double	*pos;
+	double	res;
+
+	pos = position(ray, t);
+	res = 0;
+	if (pos[0] * pos[0] + pos[2] * pos[2] <= 1)
+		res = 1;
+	free(pos);
+	return (res);
+}
+
+static void	intersect_caps(double *xs, double **ray, int del_ray)
+{
+	if (ray[1][1] * ray[1][1] < EPSILON)
+	{
+		xs[0] = -1;
+		xs[1] = -1;
+		if (del_ray)
+			free_ray(ray);
+		return ;
+	}
+	xs[0] = -ray[0][1] / ray[1][1];
+	// check lower cap
+	if (!check_cap(ray, xs[0]))
+		xs[0] = -1;
+	xs[1] = (1 - ray[0][1]) / ray[1][1];
+	// check upper cap
+	if (!check_cap(ray, xs[1]))
+		xs[1] = -1;
+	if (del_ray)
+		free_ray(ray);
+}
+
+static int	find_cap_hit(double *xs)
+{
+	double	temp;
+
+	if (xs[2] != -1)
+	{
+		temp = xs[2];
+		xs[2] = -1;
+		return (temp);
+	}
+	else
+	{
+		temp = xs[3];
+		xs[3] = -1;
+		return (temp);
+	}
+}
+
+static void	check_intersects(double xs[4], double **ray)
+{
+	double	*pos;
+
+	pos = position(ray, xs[0]);
+	if (pos[1] > 1 || pos[1] < 0)
+		xs[0] = find_cap_hit(xs);
+	free(pos);
+	pos = position(ray, xs[1]);
+	if (pos[1] > 1 || pos[1] < 0)
+		xs[1] = find_cap_hit(xs);
+	free(pos);
+	free_ray(ray);
+}
+
 static void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst)
 {
-	double	xs[2];
+	double	xs[4];
 	double	a;
 	double	b;
 	double	d;
@@ -51,16 +119,26 @@ static void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst)
 
 	ray_o = transform(ray, obj -> inv_trans);
 	a = ray_o[1][0] * ray_o[1][0] + ray_o[1][2] * ray_o[1][2];
-	if (abs_f(a) < EPSILON)
+	// ray is collinear with cylinder and thus doesnt intersect the sides
+	if (a < EPSILON)
+	{
+		intersect_caps(xs, ray_o, 1);
+		append_intersect(lst, xs, obj);
 		return ;
+	}
 	b = 2 * (ray_o[0][0] * ray_o[1][0] + ray_o[0][2] * ray_o[1][2]);
 	d = b * b - 4 * a * (ray_o[0][0] * ray_o[0][0] + ray_o[0][2] * ray_o[0][2] - 1);
+	// ray doesnt intersect neither side nor caps
 	if (d < 0)
+	{
+		free_ray(ray_o);
 		return ;
+	}
 	xs[0] = (-b - sqrt(d)) / (2 * a);
 	xs[1] = (-b + sqrt(d)) / (2 * a);
+	intersect_caps(xs + 2, ray_o, 0);
+	check_intersects(xs, ray_o);
 	append_intersect(lst, xs, obj);
-	free_ray(ray_o);
 }
 
 static void	intersect_sphere(double **ray, t_object *obj, t_intersect **lst)
@@ -93,7 +171,7 @@ static void	intersect_plane(double **ray, t_object *obj, t_intersect **lst)
 	double	**ray_o;
 
 	ray_o = transform(ray, obj -> inv_trans);
-	if (abs_f(ray_o[1][1]) < EPSILON)
+	if (ray_o[1][1] * ray_o[1][1] < EPSILON)
 	{
 		free_ray(ray_o);
 		return ;
