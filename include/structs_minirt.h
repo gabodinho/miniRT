@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:54:04 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:16:54 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ obj: object vector;
 typedef struct s_comps
 {
 	double		*point_w;
+	double		*over_point;
 	double		*eye_vec;
 	double		*normal_vec;
 	bool		inside;

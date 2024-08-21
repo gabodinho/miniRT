@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 17:18:48 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/08/21 20:47:10 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ double	*copy_vec(double *v, int size);
 double	*lighting(t_world *w, t_comps *comps);
 void	free_comps(t_comps *comps);
 void	free_intersect(t_intersect *xs);
-double	*color_at(t_world *w, double **ray);
 void	render(t_world *w, t_camera *c, mlx_image_t *img);
+int		count_lst(t_intersect *lst);
+int	is_shadowed(t_world *w, double *p);
+
 
 
 // to be deleted

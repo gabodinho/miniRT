@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:15:22 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 00:14:16 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 18:59:52 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,10 @@ static void	intersect_plane(double **ray, t_object *obj, t_intersect **lst)
 
 	ray_o = transform(ray, obj -> inv_trans);
 	if (abs_f(ray_o[1][1]) < EPSILON)
+	{
+		free_ray(ray_o);
 		return ;
+	}
 	xs[0] = - ray_o[0][1] / ray_o[1][1];
 	xs[1] = xs[0];
 	append_intersect(lst, xs, obj);

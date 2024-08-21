@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 20:20:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 02:30:34 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 20:42:27 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static double	*sphere_normal(t_object *obj, double *p_w)
 }
 
 double	*normal_at(t_object *obj, double *p_w)
-// double	*normal_at(t_object *obj, double *p_w, double **ray)
 {
 	if (obj -> shape == SPHERE)
 		return (sphere_normal(obj, p_w));
