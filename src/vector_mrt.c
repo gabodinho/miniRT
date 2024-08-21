@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:15:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/16 21:48:38 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 01:44:07 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ double	*cross_product(double *v1, double *v2)
 		return (NULL);
 	}
 	a = (v1[1] * v2[2]) - (v1[2] * v2[1]);
-	b = v1[2] * v2[0] - v1[0] * v2[2];
-	c = v1[0] * v2[1] - v1[1] * v2[0];
+	b = (v1[2] * v2[0]) - (v1[0] * v2[2]);
+	c = (v1[0] * v2[1]) - (v1[1] * v2[0]);
 	return (vector(a, b, c));
 }
 

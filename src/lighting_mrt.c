@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:15:46 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 02:27:39 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 02:52:11 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static double	*get_specular(double *light_v, t_comps *comps, t_world *w)
 	double	*specular;
 
 	normalize(light_v);
-	if (dot_product(light_v, comps -> normal_vec))
+	if (dot_product(light_v, comps -> normal_vec) < 0)
 		specular = point(0, 0, 0);
 	else
 	{

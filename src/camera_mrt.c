@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/17 20:05:20 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 01:20:40 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ static double	*view_transform(double *from, double *forward, double *up)
 	orientation[m2a(4, 2, 0)] = -forward[0];
 	orientation[m2a(4, 2, 1)] = -forward[1];
 	orientation[m2a(4, 2, 2)] = -forward[2];
+	printf("orient:\n");
+	print_vec(orientation, 4);
 	trans = translate(-from[0], -from[1], -from[2]);
+	printf("trans:\n");
+	print_vec(trans, 4);
 	free(true_up);
 	true_up = mat_mat_prod(orientation, trans, 4);
 	free(left);
@@ -81,8 +85,8 @@ void	init_camera(t_camera *cam)
 	direction = vector(cam -> nv_x, cam -> nv_y, cam -> nv_z);
 	up = vector(0, 1, 0);
 	cam -> transform = view_transform(from, direction, up);
-	// printf("camera transform:\n");
-	// print_vec(cam -> transform, 4);
+	printf("camera transform:\n");
+	print_vec(cam -> transform, 4);
 	cam -> inv_trans = invert(cam -> transform, 4);
 	free(from);
 	free(direction);
@@ -91,17 +95,16 @@ void	init_camera(t_camera *cam)
 
 double	**ray_for_pixel(t_camera *cam, int	x, int y)
 {
-	double	x_world;
-	double	y_world;
+	double	world_xy[2];
 	double	*pixel;
 	double	*origin;
 	double	*direction;
 	double	**ray;
 
-	x_world = cam -> half_width - ((x + 0.5) * cam -> pixel_size);
-	y_world = cam -> half_height - ((y + 0.5) * cam -> pixel_size);
+	world_xy[0] = cam -> half_width - ((x + 0.5) * cam -> pixel_size);
+	world_xy[1] = cam -> half_height - ((y + 0.5) * cam -> pixel_size);
 	ray = malloc(sizeof(double *) * 2);
-	pixel = point(x_world, y_world, -1);
+	pixel = point(world_xy[0], world_xy[1], -1);
 	origin = point(0, 0, 0);
 	ray[0] = mat_vec_prod(cam -> inv_trans, origin);
 	// printf("transformed origin: \n");

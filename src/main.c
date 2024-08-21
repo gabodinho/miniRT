@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 15:41:23 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 02:39:43 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,18 +166,30 @@ int main(void)
 	obj4 -> shape = SPHERE;
 	obj4 -> transform = translate(0, 0, 0);
 	obj4 -> inv_trans = invert(obj4 -> transform, 4);
-	obj4 -> colour = point(1, 0, 0);
-	w2 -> amb_colour = point(0.4, 0.4, 0.4);
+	obj4 -> colour = point(0.5, 0, 0);
+	// t_object *obj2 = malloc(sizeof(t_object));
+	// obj2 -> shape = PLANE;
+	// obj2 -> transform = identity_matrix(4);
+	// obj2 -> inv_trans = invert(obj2 -> transform, 4);
+	// obj2 -> colour = point(1, 1, 0);
+	// t_object *obj3 = malloc(sizeof(t_object));
+	// obj3 -> shape = CYLNDR;
+	// obj3 -> transform = translate(0.5, 0, 0);
+	// obj3 -> inv_trans = invert(obj3 -> transform, 4);
+	// obj3 -> colour = point(0, 1, 1);
+	w2 -> amb_colour = point(0.6, 0.6, 0.6);
 	w2 -> light_bright = 0.9;
-	w2 -> n_obj = 1;
-	w2 -> objects = malloc(sizeof(t_object *) * 1);
-	w2->objects[0] = obj4;
 	w2 -> light_point = point(-5, 10, -10);
+	w2 -> n_obj = 1;
+	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
+	w2->objects[0] = obj4;
+	// w2->objects[1] = obj2;
+	// w2->objects[2] = obj3;
 	t_camera *cam;
     cam = malloc(sizeof(t_camera));
     cam -> vp_x = 0;
-    cam -> vp_y = 0;
-    cam -> vp_z = -2;
+    cam -> vp_y = 0.5;
+    cam -> vp_z = -3;
     cam -> nv_x = 0;
     cam -> nv_y = 0;
     cam -> nv_z = 1;

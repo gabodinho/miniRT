@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:58:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/18 02:36:56 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/21 02:08:59 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_comps(t_comps *comps)
 {
 	free(comps -> point_w);
 	free(comps -> normal_vec);
+	free(comps -> eye_vec);
 	free(comps);
 }
 
@@ -62,7 +63,7 @@ void	vec_skal_prod(double *v, double s, int size)
 
 	i = -1;
 	while (++i < size)
-		v[i] = v[0] * s;
+		v[i] = v[i] * s;
 }
 
 double	*copy_vec(double *v, int size)
