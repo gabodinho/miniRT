@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 20:20:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/22 00:40:05 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:23:10 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static double	*cylinder_normal(t_object *obj, double *p_w)
 	dist = p_o[0] * p_o[0] + p_o[2] * p_o[2];
 	if (dist < 1 && p_o[1] >= 1 - EPSILON)
 		n_o = vector(0, 1, 0);
-	else if (dist < 1 && p_o[1] <= 0 - EPSILON)
+	else if (dist < 1 && p_o[1] <= 0 + EPSILON)
 		n_o = vector(0, -1, 0);
 	else
 		n_o = vector(p_o[0], 0, p_o[2]);

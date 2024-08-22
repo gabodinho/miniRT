@@ -6,19 +6,19 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:58:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/22 00:18:36 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 11:31:15 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-// double	abs_f(double val)
-// {
-// 	if (val < 0)
-// 		return (val * -1);
-// 	else
-// 		return (val);
-// }
+double	abs_f(double val)
+{
+	if (val < 0)
+		return (val * -1);
+	else
+		return (val);
+}
 
 /*
 no free necessary for the result;

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:15:22 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/22 00:21:59 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/22 12:14:57 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static int	check_cap(double **ray, double t)
 
 	pos = position(ray, t);
 	res = 0;
-	if (pos[0] * pos[0] + pos[2] * pos[2] <= 1)
+	if ((pos[0] * pos[0]) + (pos[2] * pos[2]) <= 1)
 		res = 1;
 	free(pos);
 	return (res);
@@ -56,7 +56,7 @@ static int	check_cap(double **ray, double t)
 
 static void	intersect_caps(double *xs, double **ray, int del_ray)
 {
-	if (ray[1][1] * ray[1][1] < EPSILON)
+	if (abs_f(ray[1][1]) < EPSILON)
 	{
 		xs[0] = -1;
 		xs[1] = -1;
@@ -76,7 +76,7 @@ static void	intersect_caps(double *xs, double **ray, int del_ray)
 		free_ray(ray);
 }
 
-static int	find_cap_hit(double *xs)
+static double	find_cap_hit(double *xs)
 {
 	double	temp;
 
@@ -137,7 +137,18 @@ static void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst)
 	xs[0] = (-b - sqrt(d)) / (2 * a);
 	xs[1] = (-b + sqrt(d)) / (2 * a);
 	intersect_caps(xs + 2, ray_o, 0);
+	if (xs[2] != -1 || xs[3] != -1)
+	{
+		// printf("ray: ");
+		// print_vec(ray[0], 0);
+		// printf("ray_o: ");
+		// print_vec(ray_o[0], 0);
+		printf("xs: %.2f, %.2f; \n", xs[2], xs[3]);
+		// print_vec(position(ray_o, xs[2]), 0);
+	}
+	// printf("Axs: %.2f, %.2f, %.2f, %.2f ", xs[0], xs[1], xs[2], xs[3]);
 	check_intersects(xs, ray_o);
+	// printf("Bxs: %.2f, %.2f, %.2f, %.2f\n", xs[0], xs[1], xs[2], xs[3]);
 	append_intersect(lst, xs, obj);
 }
 
@@ -171,7 +182,7 @@ static void	intersect_plane(double **ray, t_object *obj, t_intersect **lst)
 	double	**ray_o;
 
 	ray_o = transform(ray, obj -> inv_trans);
-	if (ray_o[1][1] * ray_o[1][1] < EPSILON)
+	if (abs_f(ray_o[1][1]) < EPSILON)
 	{
 		free_ray(ray_o);
 		return ;
