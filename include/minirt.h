@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 11:18:17 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:36:18 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ t_object	*init_plane(char *input);
 double	*get_double_touple(char **str, int kind);
 int	get_double(double *f, char *str);
 t_object	*init_sphere(char *input);
+t_object	*init_cylinder(char *input);
 
 
 // to be deleted

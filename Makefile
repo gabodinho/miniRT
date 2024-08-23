@@ -6,7 +6,7 @@
 #    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/08/23 11:10:17 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/08/23 23:31:51 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRCS	:=	src/main.c \
 			src/render_mrt.c \
 			src/aux_mrt2.c \
 			src/init_plane.c \
-			src/init_sphere.c
+			src/init_sphere.c \
+			src/init_cylinder.c
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 11:19:45 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:53:59 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,24 +77,39 @@ int	main(void)
 	w2 -> amb_colour = point(0.6, 0.6, 0.6);
 	w2 -> light_bright = 0.9;
 	w2 -> light_point = point(-5, 5, -10);
-	w2 -> n_obj = 2;
+	w2 -> n_obj = 3;
 	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
-	char *str = "0,-0,-10 0.57735,0.57735,-0.57735 0,0,225";
+	char *str = "0,-2,0 0.5773,0.5773,-0.5773 50,250,0";
 	printf("%s\n", str);
 	t_object *plane = init_plane(str);
 	w2->objects[0] = plane;
-	char *str2 = "0.0,0.0,20.6 12.6 10,0,255";
+	char *str2 = "0.0,0.0,10 10 10,0,255";
 	printf("%s\n", str2);
-	t_object *sphere = init_sphere(str);
+	t_object *sphere = init_sphere(str2);
 	w2->objects[1] = sphere;
-	// print_vec(plane -> n_vec, 0);
-	// print_vec(plane -> point, 0);
-	// print_vec(plane -> colour, -1);
+	char *str3 = "0.0,0.0,10 1,0,0 2 20 255,0,100";
+	printf("%s\n", str3);
+	t_object *cyl = init_cylinder(str3);
+	w2->objects[2] = cyl;
+	printf("plane:\n");
+	print_vec(plane -> n_vec, 0);
+	print_vec(plane -> point, 0);
+	print_vec(plane -> colour, -1);
+	printf("sphere:\n");
+	printf("diam: %f\n", sphere -> diam);
+	print_vec(sphere-> point, 0);
+	print_vec(sphere-> colour, -1);
+	printf("cylinder:\n");
+	printf("diam: %f\n", cyl -> diam);
+	printf("height: %f\n", cyl -> height);
+	print_vec(cyl-> point, 0);
+	print_vec(cyl -> n_vec, 0);
+	print_vec(cyl-> colour, -1);
 	t_camera *cam;
     cam = malloc(sizeof(t_camera));
     cam -> vp_x = 0;
     cam -> vp_y = 0;
-    cam -> vp_z = -3;
+    cam -> vp_z = -5;
     cam -> nv_x = 0;
     cam -> nv_y = 0;
     cam -> nv_z = 1;

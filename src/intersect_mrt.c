@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:15:22 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/22 12:14:57 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:20:04 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,11 @@ static void	intersect_caps(double *xs, double **ray, int del_ray)
 			free_ray(ray);
 		return ;
 	}
-	xs[0] = -ray[0][1] / ray[1][1];
+	xs[0] = (-0.5 - ray[0][1]) / ray[1][1];
 	// check lower cap
 	if (!check_cap(ray, xs[0]))
 		xs[0] = -1;
-	xs[1] = (1 - ray[0][1]) / ray[1][1];
+	xs[1] = (0.5 - ray[0][1]) / ray[1][1];
 	// check upper cap
 	if (!check_cap(ray, xs[1]))
 		xs[1] = -1;
@@ -99,11 +99,11 @@ static void	check_intersects(double xs[4], double **ray)
 	double	*pos;
 
 	pos = position(ray, xs[0]);
-	if (pos[1] > 1 || pos[1] < 0)
+	if (pos[1] > 0.5 || pos[1] < -0.5)
 		xs[0] = find_cap_hit(xs);
 	free(pos);
 	pos = position(ray, xs[1]);
-	if (pos[1] > 1 || pos[1] < 0)
+	if (pos[1] > 0.5 || pos[1] < -0.5)
 		xs[1] = find_cap_hit(xs);
 	free(pos);
 	free_ray(ray);
@@ -137,15 +137,6 @@ static void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst)
 	xs[0] = (-b - sqrt(d)) / (2 * a);
 	xs[1] = (-b + sqrt(d)) / (2 * a);
 	intersect_caps(xs + 2, ray_o, 0);
-	if (xs[2] != -1 || xs[3] != -1)
-	{
-		// printf("ray: ");
-		// print_vec(ray[0], 0);
-		// printf("ray_o: ");
-		// print_vec(ray_o[0], 0);
-		printf("xs: %.2f, %.2f; \n", xs[2], xs[3]);
-		// print_vec(position(ray_o, xs[2]), 0);
-	}
 	// printf("Axs: %.2f, %.2f, %.2f, %.2f ", xs[0], xs[1], xs[2], xs[3]);
 	check_intersects(xs, ray_o);
 	// printf("Bxs: %.2f, %.2f, %.2f, %.2f\n", xs[0], xs[1], xs[2], xs[3]);

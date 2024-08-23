@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 11:17:14 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/24 00:59:39 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	get_double(double *f, char *str)
 	while(!ft_strchr(", \n", str[i + len_dec]))
 		len_dec++;
 	*f += temp / pow(10, len_dec);
+	if (*f < 1 && *f > 0 && *str == '-')
+		*f *= -1;
 	if (str[i + len_dec] == ',')
 		return (i + len_dec + 1);
 	else
@@ -65,22 +67,22 @@ static void	set_plane_trans(t_object *pl)
 	double	*temp;
 
 	rot_x_ = rot_x(acos(pl -> n_vec[1]));
-	printf("rot_x: \n");
-	print_vec(rot_x_, 4);
+	// printf("rot_x: \n");
+	// print_vec(rot_x_, 4);
 	rot_y_ = rot_y(acos(pl -> n_vec[2]));
-	printf("rot_y: \n");
-	print_vec(rot_y_, 4);
+	// printf("rot_y: \n");
+	// print_vec(rot_y_, 4);
 	translate_ = translate(pl -> point[0], pl -> point[1], pl -> point[2]);
-	printf("translate: \n");
-	print_vec(translate_, 4);
+	// printf("translate: \n");
+	// print_vec(translate_, 4);
 	temp = mat_mat_prod(rot_y_, rot_x_, 4);
 	pl -> transform = mat_mat_prod(translate_, temp, 4);
 	free(rot_x_);
 	free(rot_y_);
 	free(translate_);
 	free(temp);
-	printf("trafo: \n");
-	print_vec(pl -> transform, 4);
+	// printf("trafo: \n");
+	// print_vec(pl -> transform, 4);
 }
 
 /* input is str starting at first non empty char after pl identifier */

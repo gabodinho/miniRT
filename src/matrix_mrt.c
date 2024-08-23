@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:17:57 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/16 01:38:11 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/23 23:01:10 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ double	*identity_matrix(int size)
 	// throw error
 	if (!mat)
 		return (NULL);
-	ft_memset(mat, 0, size * size);
+	ft_memset(mat, 0, size * size * sizeof(double));
 	i = -1;
 	while (++i < size)
 		mat[m2a(size, i, i)] = 1;
