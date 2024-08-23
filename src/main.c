@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/24 00:53:59 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/24 01:14:27 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	main(void)
 	w2 -> light_point = point(-5, 5, -10);
 	w2 -> n_obj = 3;
 	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
-	char *str = "0,-2,0 0.5773,0.5773,-0.5773 50,250,0";
+	char *str = "-5,-2,0 0.5773,0.5773,-0.5773 50,250,0";
 	printf("%s\n", str);
 	t_object *plane = init_plane(str);
 	w2->objects[0] = plane;
