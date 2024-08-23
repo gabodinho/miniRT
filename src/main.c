@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 01:50:11 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:19:45 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,16 +77,19 @@ int	main(void)
 	w2 -> amb_colour = point(0.6, 0.6, 0.6);
 	w2 -> light_bright = 0.9;
 	w2 -> light_point = point(-5, 5, -10);
-	w2 -> n_obj = 1;
+	w2 -> n_obj = 2;
 	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
-	char *str = "0.0,0.0,-10.0 0.0,0.0,-1.0 0,0,225";
+	char *str = "0,-0,-10 0.57735,0.57735,-0.57735 0,0,225";
 	printf("%s\n", str);
 	t_object *plane = init_plane(str);
 	w2->objects[0] = plane;
-
-	print_vec(plane -> n_vec, 0);
-	print_vec(plane -> point, 0);
-	print_vec(plane -> colour, -1);
+	char *str2 = "0.0,0.0,20.6 12.6 10,0,255";
+	printf("%s\n", str2);
+	t_object *sphere = init_sphere(str);
+	w2->objects[1] = sphere;
+	// print_vec(plane -> n_vec, 0);
+	// print_vec(plane -> point, 0);
+	// print_vec(plane -> colour, -1);
 	t_camera *cam;
     cam = malloc(sizeof(t_camera));
     cam -> vp_x = 0;

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 00:35:38 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:18:17 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int		count_lst(t_intersect *lst);
 int	is_shadowed(t_world *w, double *p);
 t_object	*init_plane(char *input);
 double	*get_double_touple(char **str, int kind);
+int	get_double(double *f, char *str);
+t_object	*init_sphere(char *input);
 
 
 // to be deleted

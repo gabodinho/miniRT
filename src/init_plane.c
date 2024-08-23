@@ -6,13 +6,13 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 01:42:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/23 11:17:14 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static int	get_double(double *f, char *str, int kind)
+int	get_double(double *f, char *str)
 {
 	int	i;
 	int	len_dec;
@@ -21,16 +21,22 @@ static int	get_double(double *f, char *str, int kind)
 	i = 0;
 	len_dec = 0;
 	*f = (double) ft_atoi(str);
-	while(str[i] != '.' && str[i] != ',')
+	while(!ft_strchr(", .\n", str[i]))
 		i++;
-	i++;
-	if (kind == 2)
+	if (str[i] == ',')
+		return (i + 1);
+	else if (str[i] == '\n' || str[i] == ' ')
 		return (i);
+	else
+		i++;
 	temp = (double) (ft_atoi(str + i));
-	while(str[i + len_dec] != ',' && str[i + len_dec] != ' ')
+	while(!ft_strchr(", \n", str[i + len_dec]))
 		len_dec++;
 	*f += temp / pow(10, len_dec);
-	return (i + len_dec + 1);
+	if (str[i + len_dec] == ',')
+		return (i + len_dec + 1);
+	else
+		return (i + len_dec);
 }
 
 double	*get_double_touple(char **str, int kind)
@@ -40,7 +46,7 @@ double	*get_double_touple(char **str, int kind)
 
 	i = -1;
 	while(++i < 3)
-		*str += get_double(temp + i, *str, kind);
+		*str += get_double(temp + i, *str);
 	while(**str == ' ')
 		*str += 1;
 	if (kind == 0)
