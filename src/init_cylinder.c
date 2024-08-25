@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:01:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:39:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,17 @@ static void	set_cylinder_trans(t_object *cyl)
 	double	**temp;
 
 	rot_x_ = rot_x(acos(cyl -> norm_v[1]));
-	printf("rot_x: \n");
-	print_vec(rot_x_, 4);
+	// printf("rot_x: \n");
+	// print_vec(rot_x_, 4);
 	rot_y_ = rot_y(acos(cyl -> norm_v[2]));
-	printf("rot_y: \n");
-	print_vec(rot_y_, 4);
+	// printf("rot_y: \n");
+	// print_vec(rot_y_, 4);
 	translate_ = translate(cyl -> obj_p[0], cyl -> obj_p[1], cyl -> obj_p[2]);
-	printf("translate: \n");
-	print_vec(translate_, 4);
+	// printf("translate: \n");
+	// print_vec(translate_, 4);
 	scale_ = scale(cyl -> diam / 2, cyl -> height, cyl -> diam / 2);
-	printf("scale: \n");
-	print_vec(scale_, 4);
+	// printf("scale: \n");
+	// print_vec(scale_, 4);
 	temp = malloc(sizeof(double *) * 2);
 	temp[0] = mat_mat_prod(translate_, rot_y_, 4);
 	temp[1] = mat_mat_prod(temp[0], rot_x_, 4);
@@ -49,6 +49,7 @@ t_object	*init_cylinder(char *input)
 
 	cyl = malloc(sizeof(t_object));
 	cyl -> shape = CYLNDR;
+	input += 2 + skip_empty(input + 2);
 	cyl -> obj_p = get_double_touple(&input, 0);
 	cyl -> norm_v = get_double_touple(&input, 1);
 	input += get_double(&cyl -> diam, input);

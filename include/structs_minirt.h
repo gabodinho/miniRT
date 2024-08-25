@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:01:30 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 14:29:02 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,19 @@ typedef struct s_intersect
 	struct s_intersect	*next;
 }	t_intersect;
 
+
+typedef struct s_camera
+{
+	double	*view_p;
+	double	*norm_v;
+	double	field_of_view;
+	double	*transform;
+	double	*inv_trans;
+	double	half_width;
+	double	half_height;
+	double	pixel_size;
+}	t_camera;
+
 /*
 world contains an array of all the objects and the light information.
 colour vetors are being set up during initialisation: rgb val / 255
@@ -69,6 +82,7 @@ typedef struct s_world
 	double		*light_p;
 	double		light_bright;
 	double		*amb_colour;
+	t_camera	*cam;
 }	t_world;
 
 /*
@@ -89,16 +103,6 @@ typedef struct s_comps
 	t_object	*obj;
 }	t_comps;
 
-typedef struct s_camera
-{
-	double	*view_p;
-	double	*norm_v;
-	double	field_of_view;
-	double	*transform;
-	double	*inv_trans;
-	double	half_width;
-	double	half_height;
-	double	pixel_size;
-}	t_camera;
+
 
 #endif

@@ -6,15 +6,12 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:41:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:44:09 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-/* # ifdef __linux__
-#  include <bsd/string.h>
-# endif */
 # include <stddef.h>
 # include <unistd.h>
 # include <stdlib.h>

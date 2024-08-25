@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:01:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:11:03 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_object	*init_plane(char *input)
 
 	plane = malloc(sizeof(t_object));
 	plane -> shape = PLANE;
+	input += 2 + skip_empty(input + 2);
 	plane -> obj_p = get_double_touple(&input, 0);
 	plane -> norm_v = get_double_touple(&input, 1);
 	plane -> colour = get_double_touple(&input, 2);

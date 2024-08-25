@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   camera_mrt.c                                       :+:      :+:    :+:   */
+/*   init_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:20:01 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:31:33 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,13 +92,19 @@ t_camera	*init_camera(char *input)
 	double		*up;
 
 	cam = malloc(sizeof(t_camera));
+	// include malloc protection
+	input += 1 + skip_empty(input + 1);
 	cam -> view_p = get_double_touple(&input, 0);
 	cam -> norm_v = get_double_touple(&input, 1);
 	get_double(&cam -> field_of_view, input);
 	calc_pixel_size(cam);
 	up = vector(0, 1, 0);
+	// keep in mind that program cannot compute inv_mat when norm vector (0,y,0)
 	cam -> transform = view_transform(cam -> view_p, cam -> norm_v, up);
 	cam -> inv_trans = invert(cam -> transform, 4);
+	printf("camera tranpose and inv_trans:\n");
+	print_vec(cam->transform, 4);
+	print_vec(cam->inv_trans, 4);
 	free(up);
 	return (cam);
 }

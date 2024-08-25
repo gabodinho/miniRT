@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:17:54 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:12:50 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ t_object	*init_cylinder(char *input);
 t_camera	*init_camera(char *input);
 void	set_light(t_world *w, char *input);
 void	set_ambient(t_world *w, char *input);
+int	get_n_obj(char *file);
+t_world	*init_world(char *file);
+int	skip_empty(char *line);
 
 
 // to be deleted

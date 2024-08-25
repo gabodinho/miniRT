@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 10:39:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:01:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 15:10:54 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_object	*init_sphere(char *input)
 
 	sphere = malloc(sizeof(t_object));
 	sphere -> shape = SPHERE;
+	input += 2 + skip_empty(input + 2);
 	sphere -> obj_p = get_double_touple(&input, 0);
 	input += get_double(&sphere -> diam, input);
 	while (*input == ' ')

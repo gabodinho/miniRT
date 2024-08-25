@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 13:02:45 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 16:53:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,36 @@ void    print_vec(double *v, int size)
     printf("this is a %s: %f, %f, %f\n", str, v[0], v[1], v[2]);
 }
 
+
+void	print_world_info(t_world *w)
+{
+	t_object *obj;
+
+	for (int i = 0; i < w -> n_obj; i++)
+	{
+		obj = w -> objects[i];
+		printf("shape: %d\n\npoint: ", obj ->shape);
+		print_vec(obj->obj_p, 0);
+		printf("normal: ");
+		if (obj->shape == CYLNDR || obj->shape == PLANE)
+			print_vec(obj->norm_v, 0);
+		printf("colour: ");
+		print_vec(obj ->colour, -1);
+		if (obj->shape == CYLNDR || obj->shape == SPHERE)
+			printf("diam: %f\n", obj -> diam);
+		if (obj->shape == CYLNDR)
+			printf("height: %f\n", obj ->height);
+	}
+	printf("camera:\n\nnormal: ");
+	print_vec(w->cam->norm_v, 0);
+	printf("view point: ");
+	print_vec(w->cam->view_p, 0);
+	printf("light:\n\npoint: ");
+	print_vec(w->light_p, 0);
+	printf("bright: %f\namb colour: ", w->light_bright);
+	print_vec(w->amb_colour, -1);
+
+}
 /*
 void    test_colour_at(t_world *w, t_camera *c)
 {
@@ -71,12 +101,38 @@ void    test_colour_at(t_world *w, t_camera *c)
 }
 */
 
+
+int	main(int argc, char *argv[])
+{
+	t_world	*w;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
+
+	if (argc != 2)
+		return (1);
+	w = init_world(argv[1]);
+	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
+	image = mlx_new_image(mlx, HSIZE, VSIZE);
+	print_world_info(w);
+	render(w, w -> cam, image);
+	mlx_image_to_window(mlx, image, 0, 0);
+	mlx_loop(mlx);
+	mlx_terminate(mlx);
+
+	return (0);
+}
+
+/*
 int	main(void)
 {
+	printf("nobjs: %d\n", get_n_obj("test_file.txt"));
+
 	t_world *w2 = malloc(sizeof(t_world));
-	w2 -> amb_colour = point(0.6, 0.6, 0.6);
-	w2 -> light_bright = 0.9;
-	w2 -> light_p = point(-5, 5, -10);
+	set_ambient(w2, "0.6    255,255,255 ");
+	// w2 -> amb_colour = point(0.6, 0.6, 0.6);
+	set_light(w2, "-5,5,-10  0.9 ");
+	// w2 -> light_bright = 0.9;
+	// w2 -> light_p = point(-5, 5, -10);
 	w2 -> n_obj = 3;
 	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
 	char *str = "-5,-2,0 0.5773,0.5773,-0.5773 50,250,0";
@@ -124,7 +180,7 @@ int	main(void)
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
     return (0);
-}
+} */
 /*
 int main(void)
 {
