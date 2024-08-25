@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:51:13 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:59:25 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,40 @@ void    test_colour_at(t_world *w, t_camera *c)
 	}
 }
 */
-void	escape(void *ptr)
+static void	escape(void *ptr)
 {
 	mlx_t	*mlx;
 
 	mlx = (mlx_t *) ptr;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
+}
+
+static void	clean_up(t_world *w)
+{
+	int			i;
+	t_object	*obj;
+
+	i = -1;
+	while (++i < w -> n_obj)
+	{
+		obj = w -> objects[i];
+		free(obj -> obj_p);
+		free(obj -> norm_v);
+		free(obj -> transform);
+		free(obj -> inv_trans);
+		free(obj -> colour);
+		free(obj);
+	}
+	free(w -> cam -> view_p);
+	free(w -> cam -> norm_v);
+	free(w -> cam -> transform);
+	free(w -> cam -> inv_trans);
+	free(w -> cam);
+	free(w -> objects);
+	free(w -> light_p);
+	free(w -> amb_colour);
+	free(w);
 }
 
 int	main(int argc, char *argv[])
@@ -126,7 +153,7 @@ int	main(int argc, char *argv[])
 	mlx_loop_hook(mlx, escape, (void *) mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
-
+	clean_up(w);
 	return (0);
 }
 

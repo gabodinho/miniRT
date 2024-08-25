@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 10:39:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:51:40 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:12:49 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ t_object	*init_sphere(char *input)
 	sphere -> colour = get_double_touple(&input, 2);
 	set_sphere_trans(sphere);
 	sphere -> inv_trans = invert(sphere -> transform, 4);
+	sphere -> norm_v = point(0, 0, 0);
 	return (sphere);
 }

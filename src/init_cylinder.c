@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:33:17 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:37:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ static void	set_cylinder_trans(t_object *cyl)
 	free(rot_x_);
 	free(rot_y_);
 	free(translate_);
+	free(scale_);
 	free_ray(temp);
 }
 

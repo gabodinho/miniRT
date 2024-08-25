@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:15:22 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:22:40 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:28:13 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,11 @@ static void	intersect_sphere(double **ray, t_object *obj, t_intersect **lst)
 	temp[2] = temp[1] * temp[1] - 4 * temp[0]
 		* (dot_product(sp_to_ray, sp_to_ray) - 1);
 	if (temp[2] < 0)
+	{
+		free(sp_to_ray);
+		free_ray(ray_o);
 		return ;
+	}
 	xs[0] = (-temp[1] - sqrt(temp[2])) / (2 * temp[0]);
 	xs[1] = (-temp[1] + sqrt(temp[2])) / (2 * temp[0]);
 	append_intersect(lst, xs, obj);

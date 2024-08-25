@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:31:29 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:30:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	render(t_world *w, t_camera *c, mlx_image_t *img)
 			colour = color_at(w, ray_for_pixel(c, i, j));
 			pixel_idx = (j * HSIZE * 4) + (i * 4);
 			get_colour((img -> pixels) + pixel_idx, colour);
+			free(colour);
 		}
 	}
 }

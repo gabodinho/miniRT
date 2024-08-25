@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   aux_mrt2.c                                         :+:      :+:    :+:   */
+/*   aux2_mrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 20:45:06 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 12:54:57 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 21:31:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	free_comps(t_comps *comps)
 	free(comps -> world_p);
 	free(comps -> norm_v);
 	free(comps -> eye_v);
+	free(comps -> over_p);
 	free(comps);
 }
 

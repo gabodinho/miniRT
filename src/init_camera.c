@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:33:20 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 22:13:26 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,6 @@ t_camera	*init_camera(char *input)
 	// keep in mind that program cannot compute inv_mat when norm vector (0,y,0)
 	cam -> transform = view_transform(cam -> view_p, cam -> norm_v, up);
 	cam -> inv_trans = invert(cam -> transform, 4);
-	printf("camera tranpose and inv_trans:\n");
-	print_vec(cam->transform, 4);
-	print_vec(cam->inv_trans, 4);
 	free(up);
 	return (cam);
 }
