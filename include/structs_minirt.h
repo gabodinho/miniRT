@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 20:16:54 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:01:30 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ colour vetors are being set up during initialisation: rgb val / 255
 typedef struct s_object
 {
 	t_shape		shape;
-	double*		point;
-	double*		n_vec;
+	double*		obj_p;
+	double*		norm_v;
 	double		diam;
 	double		height;
 	double*		transform;
@@ -66,7 +66,7 @@ typedef struct s_world
 {
 	t_object	**objects;
 	int			n_obj;
-	double		*light_point;
+	double		*light_p;
 	double		light_bright;
 	double		*amb_colour;
 }	t_world;
@@ -81,22 +81,18 @@ obj: object vector;
 */
 typedef struct s_comps
 {
-	double		*point_w;
-	double		*over_point;
-	double		*eye_vec;
-	double		*normal_vec;
+	double		*world_p;
+	double		*over_p;
+	double		*eye_v;
+	double		*norm_v;
 	bool		inside;
 	t_object	*obj;
 }	t_comps;
 
 typedef struct s_camera
 {
-	double	vp_x;
-	double	vp_y;
-	double	vp_z;
-	double	nv_x;
-	double	nv_y;
-	double	nv_z;
+	double	*view_p;
+	double	*norm_v;
 	double	field_of_view;
 	double	*transform;
 	double	*inv_trans;

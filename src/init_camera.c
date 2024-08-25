@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/21 20:52:57 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:20:01 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,44 +70,38 @@ static void	calc_pixel_size(t_camera *cam)
 values for camera position, direction vector and field_of_view
 have already been assigned at parsing level;
 */
-void	init_camera(t_camera *cam)
+/* void	init_camera(t_camera *cam)
 {
 	double	*from;
 	double	*direction;
 	double	*up;
 
 	calc_pixel_size(cam);
-	from = point(cam -> vp_x, cam -> vp_y, cam -> vp_z);
-	direction = vector(cam -> nv_x, cam -> nv_y, cam -> nv_z);
+	from = cam -> view_p;
+	direction = cam -> norm_v;
 	up = vector(0, 1, 0);
 	cam -> transform = view_transform(from, direction, up);
 	cam -> inv_trans = invert(cam -> transform, 4);
-	free(from);
-	free(direction);
 	free(up);
-}
+} */
 
-double	**ray_for_pixel(t_camera *cam, int	x, int y)
+
+t_camera	*init_camera(char *input)
 {
-	double	world_xy[2];
-	double	*pixel;
-	double	*origin;
-	double	*direction;
-	double	**ray;
+	t_camera	*cam;
+	double		*up;
 
-	world_xy[0] = cam -> half_width - ((x + 0.5) * cam -> pixel_size);
-	world_xy[1] = cam -> half_height - ((y + 0.5) * cam -> pixel_size);
-	ray = malloc(sizeof(double *) * 2);
-	pixel = point(world_xy[0], world_xy[1], -1);
-	origin = point(0, 0, 0);
-	ray[0] = mat_vec_prod(cam -> inv_trans, origin);
-	ray[1] = mat_vec_prod(cam -> inv_trans, pixel);
-	direction = substract_points(ray[1], ray[0]);
-	normalize(direction);
-	free(ray[1]);
-	ray[1] = direction;
-	free(pixel);
-	free(origin);
-	return (ray);
+	cam = malloc(sizeof(t_camera));
+	cam -> view_p = get_double_touple(&input, 0);
+	cam -> norm_v = get_double_touple(&input, 1);
+	get_double(&cam -> field_of_view, input);
+	calc_pixel_size(cam);
+	up = vector(0, 1, 0);
+	cam -> transform = view_transform(cam -> view_p, cam -> norm_v, up);
+	cam -> inv_trans = invert(cam -> transform, 4);
+	free(up);
+	return (cam);
 }
+
+
 

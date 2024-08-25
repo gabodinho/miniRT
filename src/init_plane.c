@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/24 00:59:39 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:01:12 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,13 +66,13 @@ static void	set_plane_trans(t_object *pl)
 	double	*translate_;
 	double	*temp;
 
-	rot_x_ = rot_x(acos(pl -> n_vec[1]));
+	rot_x_ = rot_x(acos(pl -> norm_v[1]));
 	// printf("rot_x: \n");
 	// print_vec(rot_x_, 4);
-	rot_y_ = rot_y(acos(pl -> n_vec[2]));
+	rot_y_ = rot_y(acos(pl -> norm_v[2]));
 	// printf("rot_y: \n");
 	// print_vec(rot_y_, 4);
-	translate_ = translate(pl -> point[0], pl -> point[1], pl -> point[2]);
+	translate_ = translate(pl -> obj_p[0], pl -> obj_p[1], pl -> obj_p[2]);
 	// printf("translate: \n");
 	// print_vec(translate_, 4);
 	temp = mat_mat_prod(rot_y_, rot_x_, 4);
@@ -92,8 +92,8 @@ t_object	*init_plane(char *input)
 
 	plane = malloc(sizeof(t_object));
 	plane -> shape = PLANE;
-	plane -> point = get_double_touple(&input, 0);
-	plane -> n_vec = get_double_touple(&input, 1);
+	plane -> obj_p = get_double_touple(&input, 0);
+	plane -> norm_v = get_double_touple(&input, 1);
 	plane -> colour = get_double_touple(&input, 2);
 	set_plane_trans(plane);
 	plane -> inv_trans = invert(plane -> transform, 4);

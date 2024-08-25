@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/24 00:48:52 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:01:12 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ static void	set_cylinder_trans(t_object *cyl)
 	double	*scale_;
 	double	**temp;
 
-	rot_x_ = rot_x(acos(cyl -> n_vec[1]));
+	rot_x_ = rot_x(acos(cyl -> norm_v[1]));
 	printf("rot_x: \n");
 	print_vec(rot_x_, 4);
-	rot_y_ = rot_y(acos(cyl -> n_vec[2]));
+	rot_y_ = rot_y(acos(cyl -> norm_v[2]));
 	printf("rot_y: \n");
 	print_vec(rot_y_, 4);
-	translate_ = translate(cyl -> point[0], cyl -> point[1], cyl -> point[2]);
+	translate_ = translate(cyl -> obj_p[0], cyl -> obj_p[1], cyl -> obj_p[2]);
 	printf("translate: \n");
 	print_vec(translate_, 4);
 	scale_ = scale(cyl -> diam / 2, cyl -> height, cyl -> diam / 2);
@@ -49,8 +49,8 @@ t_object	*init_cylinder(char *input)
 
 	cyl = malloc(sizeof(t_object));
 	cyl -> shape = CYLNDR;
-	cyl -> point = get_double_touple(&input, 0);
-	cyl -> n_vec = get_double_touple(&input, 1);
+	cyl -> obj_p = get_double_touple(&input, 0);
+	cyl -> norm_v = get_double_touple(&input, 1);
 	input += get_double(&cyl -> diam, input);
 	while (*input == ' ')
 		input++;

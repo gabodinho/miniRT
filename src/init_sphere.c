@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 10:39:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 23:31:58 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:01:12 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	set_sphere_trans(t_object *sp)
 	double	*translate_;
 
 	scale_ = scale(sp -> diam / 2, sp -> diam / 2, sp -> diam / 2);
-	translate_ = translate(sp -> point[0], sp -> point[1], sp -> point[2]);
+	translate_ = translate(sp -> obj_p[0], sp -> obj_p[1], sp -> obj_p[2]);
 	// printf("translate: \n");
 	// print_vec(translate_, 4);
 	// printf("scale: \n");
@@ -36,7 +36,7 @@ t_object	*init_sphere(char *input)
 
 	sphere = malloc(sizeof(t_object));
 	sphere -> shape = SPHERE;
-	sphere -> point = get_double_touple(&input, 0);
+	sphere -> obj_p = get_double_touple(&input, 0);
 	input += get_double(&sphere -> diam, input);
 	while (*input == ' ')
 		input++;

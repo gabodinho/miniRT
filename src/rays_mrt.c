@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:19:41 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/21 20:37:13 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:19:55 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	is_shadowed(t_world *w, double *p)
 	t_intersect	*xs;
 	t_intersect	*hit;
 
-	dir = substract_points(w -> light_point, p);
+	dir = substract_points(w -> light_p, p);
 	dist = sqrt(pow(dir[0], 2) + pow(dir[0], 2) + pow(dir[0], 2));
 	normalize(dir);
 	r = ray(copy_vec(p, 4), dir);
@@ -64,6 +64,30 @@ int	is_shadowed(t_world *w, double *p)
 	free_ray(r);
 	free_intersect(xs);
 	return ((int) dist);
+}
+
+double	**ray_for_pixel(t_camera *cam, int	x, int y)
+{
+	double	world_xy[2];
+	double	*pixel;
+	double	*origin;
+	double	*direction;
+	double	**ray;
+
+	world_xy[0] = cam -> half_width - ((x + 0.5) * cam -> pixel_size);
+	world_xy[1] = cam -> half_height - ((y + 0.5) * cam -> pixel_size);
+	ray = malloc(sizeof(double *) * 2);
+	pixel = point(world_xy[0], world_xy[1], -1);
+	origin = point(0, 0, 0);
+	ray[0] = mat_vec_prod(cam -> inv_trans, origin);
+	ray[1] = mat_vec_prod(cam -> inv_trans, pixel);
+	direction = substract_points(ray[1], ray[0]);
+	normalize(direction);
+	free(ray[1]);
+	ray[1] = direction;
+	free(pixel);
+	free(origin);
+	return (ray);
 }
 
 

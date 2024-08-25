@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/23 23:36:18 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:17:54 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ double	*rot_y(double phi);
 double	*rot_z(double phi);
 double	**transform(double **ray, double *m);
 double	*substract_points(double *a, double *b);
-void	init_camera(t_camera *cam);
+// void	init_camera(t_camera *cam);
 double	**ray_for_pixel(t_camera *cam, int	x, int y);
 // double	*normal_at(t_object *obj, double *p_w, double **ray);
 double	*reflect(double *in, double *normal);
@@ -71,6 +71,9 @@ double	*get_double_touple(char **str, int kind);
 int	get_double(double *f, char *str);
 t_object	*init_sphere(char *input);
 t_object	*init_cylinder(char *input);
+t_camera	*init_camera(char *input);
+void	set_light(t_world *w, char *input);
+void	set_ambient(t_world *w, char *input);
 
 
 // to be deleted

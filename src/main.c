@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/24 01:14:27 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:02:45 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	main(void)
 	t_world *w2 = malloc(sizeof(t_world));
 	w2 -> amb_colour = point(0.6, 0.6, 0.6);
 	w2 -> light_bright = 0.9;
-	w2 -> light_point = point(-5, 5, -10);
+	w2 -> light_p = point(-5, 5, -10);
 	w2 -> n_obj = 3;
 	w2 -> objects = malloc(sizeof(t_object *) * w2 -> n_obj);
 	char *str = "-5,-2,0 0.5773,0.5773,-0.5773 50,250,0";
@@ -92,36 +92,34 @@ int	main(void)
 	t_object *cyl = init_cylinder(str3);
 	w2->objects[2] = cyl;
 	printf("plane:\n");
-	print_vec(plane -> n_vec, 0);
-	print_vec(plane -> point, 0);
+	print_vec(plane -> norm_v, 0);
+	print_vec(plane -> obj_p, 0);
 	print_vec(plane -> colour, -1);
 	printf("sphere:\n");
 	printf("diam: %f\n", sphere -> diam);
-	print_vec(sphere-> point, 0);
+	print_vec(sphere-> obj_p, 0);
 	print_vec(sphere-> colour, -1);
 	printf("cylinder:\n");
 	printf("diam: %f\n", cyl -> diam);
 	printf("height: %f\n", cyl -> height);
-	print_vec(cyl-> point, 0);
-	print_vec(cyl -> n_vec, 0);
+	print_vec(cyl-> obj_p, 0);
+	print_vec(cyl -> norm_v, 0);
 	print_vec(cyl-> colour, -1);
-	t_camera *cam;
-    cam = malloc(sizeof(t_camera));
-    cam -> vp_x = 0;
-    cam -> vp_y = 0;
-    cam -> vp_z = -5;
-    cam -> nv_x = 0;
-    cam -> nv_y = 0;
-    cam -> nv_z = 1;
-    cam -> field_of_view = 90;
-    init_camera(cam);
+	// t_camera *cam;
+    // cam = malloc(sizeof(t_camera));
+	// cam -> nv = vector(0, 0, 1);
+	// cam -> vp = point(0, 0, -5);
+    // cam -> field_of_view = 90;
+    // init_camera(cam);
 	// test_colour_at(w2, cam);
+	char *str4 = "0.0,0,-5 0,0,1 90";
+	t_camera *cam2 = init_camera(str4);
 
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
 	image = mlx_new_image(mlx, HSIZE, VSIZE);
-	render(w2, cam, image);
+	render(w2, cam2, image);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);

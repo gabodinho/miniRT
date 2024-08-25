@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/22 09:50:59 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 12:54:57 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static	void	get_colour(uint8_t *pixels, double *colour)
 
 static void	calculate_op(t_comps *comps)
 {
-	comps -> over_point = point(
-		comps -> point_w[0] + EPSILON * comps -> normal_vec[0],
-		comps -> point_w[1] + EPSILON * comps -> normal_vec[1],
-		comps -> point_w[2] + EPSILON * comps -> normal_vec[2]);
+	comps -> over_p = point(
+		comps -> world_p[0] + EPSILON * comps -> norm_v[0],
+		comps -> world_p[1] + EPSILON * comps -> norm_v[1],
+		comps -> world_p[2] + EPSILON * comps -> norm_v[2]);
 }
 
 static t_comps	*prepare_comps(double t, double **ray, t_object *obj)
@@ -45,15 +45,15 @@ static t_comps	*prepare_comps(double t, double **ray, t_object *obj)
 	t_comps	*comps;
 
 	comps = malloc(sizeof(t_comps));
-	comps -> point_w = position(ray, t);
+	comps -> world_p = position(ray, t);
 	comps -> obj = obj;
-	comps -> normal_vec = normal_at(obj, comps -> point_w);
-	comps -> eye_vec = copy_vec(ray[1], 4);
-	vec_skal_prod(comps -> eye_vec, -1, 3);
-	if (dot_product(comps -> normal_vec, comps -> eye_vec) < 0)
+	comps -> norm_v = normal_at(obj, comps -> world_p);
+	comps -> eye_v = copy_vec(ray[1], 4);
+	vec_skal_prod(comps -> eye_v, -1, 3);
+	if (dot_product(comps -> norm_v, comps -> eye_v) < 0)
 	{
 		comps -> inside = true;
-		vec_skal_prod(comps -> normal_vec, -1, 3);
+		vec_skal_prod(comps -> norm_v, -1, 3);
 	}
 	else
 		comps -> inside = false;
