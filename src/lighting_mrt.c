@@ -6,12 +6,11 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:15:46 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 12:55:56 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:24:16 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
 
 static double	*get_ambient(double *eff_col, t_world *w)
 {
@@ -88,9 +87,9 @@ double	*lighting(t_world *w, t_comps *comps)
 	if (is_shadowed(w, comps -> over_p))
 		return (ambient);
 	diffuse = get_diffuse(eff_col,
-		substract_points(w -> light_p, comps -> world_p), comps);
+			substract_points(w -> light_p, comps -> world_p), comps);
 	specular = get_specular(
-		substract_points(w -> light_p, comps -> world_p), comps, w);
+			substract_points(w -> light_p, comps -> world_p), comps, w);
 	add_three_col(ambient, diffuse, specular);
 	free(diffuse);
 	free(specular);

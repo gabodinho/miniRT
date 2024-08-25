@@ -6,30 +6,20 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 15:12:34 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:19:24 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	skip_empty(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (ft_strchr("\t ", line[i]))
-		i++;
-	return (i);
-}
-
-void	set_light(t_world *w, char *input)
+static void	set_light(t_world *w, char *input)
 {
 	input += 1 + skip_empty(input + 1);
 	w -> light_p = get_double_touple(&input, 0);
 	input += get_double(&w -> light_bright, input);
 }
 
-void	set_ambient(t_world *w, char *input)
+static void	set_ambient(t_world *w, char *input)
 {
 	double	amb_ratio;
 
@@ -41,8 +31,7 @@ void	set_ambient(t_world *w, char *input)
 	vec_skal_prod(w -> amb_colour, amb_ratio, 3);
 }
 
-
-int	get_n_obj(char *file)
+static int	get_n_obj(char *file)
 {
 	int		fd;
 	char	*line;

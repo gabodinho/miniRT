@@ -6,7 +6,7 @@
 #    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/08/25 13:20:44 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/08/25 18:13:55 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,12 +31,14 @@ SRCS	:=	src/main.c \
 			src/matrix2_mrt.c \
 			src/rays_mrt.c \
 			src/aux_mrt.c \
+			src/aux2_mrt.c \
+			src/aux3_mrt.c \
 			src/intersect_mrt.c \
 			src/intersect2_mrt.c \
+			src/intersect3_mrt.c \
 			src/normal_mrt.c \
 			src/lighting_mrt.c \
 			src/render_mrt.c \
-			src/aux_mrt2.c \
 			src/init_plane.c \
 			src/init_sphere.c \
 			src/init_cylinder.c \

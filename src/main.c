@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 16:53:28 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:51:13 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	print_intersect(t_intersect *list)
 	int	i;
 
 	i = 0;
-	while(list)
+	while (list)
 	{
 		printf("obj %d: %d, with itersect val: %f\n", i++, list -> obj -> shape, list -> t);
 		list = list -> next;
@@ -100,7 +100,14 @@ void    test_colour_at(t_world *w, t_camera *c)
 	}
 }
 */
+void	escape(void *ptr)
+{
+	mlx_t	*mlx;
 
+	mlx = (mlx_t *) ptr;
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
+}
 
 int	main(int argc, char *argv[])
 {
@@ -116,6 +123,7 @@ int	main(int argc, char *argv[])
 	print_world_info(w);
 	render(w, w -> cam, image);
 	mlx_image_to_window(mlx, image, 0, 0);
+	mlx_loop_hook(mlx, escape, (void *) mlx);
 	mlx_loop(mlx);
 	mlx_terminate(mlx);
 

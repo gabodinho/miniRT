@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:19:41 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/25 13:19:55 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:30:38 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ double	**ray(double *origin, double *direction)
 double	*position(double **ray, double t)
 {
 	return (point(
-	ray[0][0] + t * ray[1][0],
-	ray[0][1] + t * ray[1][1],
-	ray[0][2] + t * ray[1][2]));
+			ray[0][0] + t * ray[1][0],
+			ray[0][1] + t * ray[1][1],
+			ray[0][2] + t * ray[1][2]));
 }
 
 double	**transform(double **ray, double *m)
@@ -45,9 +45,9 @@ double	**transform(double **ray, double *m)
 
 int	is_shadowed(t_world *w, double *p)
 {
-	double	*dir;
-	double	dist;
-	double	**r;
+	double		*dir;
+	double		dist;
+	double		**r;
 	t_intersect	*xs;
 	t_intersect	*hit;
 
@@ -66,7 +66,7 @@ int	is_shadowed(t_world *w, double *p)
 	return ((int) dist);
 }
 
-double	**ray_for_pixel(t_camera *cam, int	x, int y)
+double	**ray_for_pixel(t_camera *cam, int x, int y)
 {
 	double	world_xy[2];
 	double	*pixel;
@@ -89,5 +89,3 @@ double	**ray_for_pixel(t_camera *cam, int	x, int y)
 	free(origin);
 	return (ray);
 }
-
-

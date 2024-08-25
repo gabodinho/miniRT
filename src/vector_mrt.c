@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:15:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 12:10:54 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:32:58 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	normalize(double tuple[4])
 	double	length;
 	int		i;
 
-	length = sqrt(tuple[0]*tuple[0] + tuple[1]*tuple[1] + tuple[2]*tuple[2]);
+	length = sqrt(tuple[0] * tuple[0] + tuple[1] * tuple[1]
+			+ tuple[2] * tuple[2]);
 	i = -1;
 	while (++i < 3)
 		tuple[i] = tuple[i] / length;
@@ -79,5 +80,3 @@ double	*cross_product(double *v1, double *v2)
 	c = (v1[0] * v2[1]) - (v1[1] * v2[0]);
 	return (vector(a, b, c));
 }
-
-

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 21:58:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/22 11:31:15 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:33:04 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ double	*copy_vec(double *v, int size)
 
 	res = malloc(sizeof(double) * size);
 	i = -1;
-	while(++i < size)
+	while (++i < size)
 		res[i] = v[i];
 	return (res);
 }
-
 
 double	*substract_points(double *a, double *b)
 {

@@ -6,12 +6,12 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 14:29:02 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:36:11 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_MRT_H
-# define STRUCTS_MRT_H
+#ifndef STRUCTS_MINIRT_H
+# define STRUCTS_MINIRT_H
 # include <stdbool.h>
 # include "ft_printf.h"
 # define EPSILON 0.001
@@ -28,7 +28,6 @@ typedef enum e_shape
 	CYLNDR
 }	t_shape;
 
-
 /*
 geometric, positional and material properties;
 not all values for all shapes!
@@ -36,13 +35,13 @@ colour vetors are being set up during initialisation: rgb val / 255
 */
 typedef struct s_object
 {
-	t_shape		shape;
-	double*		obj_p;
-	double*		norm_v;
-	double		diam;
-	double		height;
-	double*		transform;
-	double*		inv_trans;
+	t_shape	shape;
+	double	*obj_p;
+	double	*norm_v;
+	double	diam;
+	double	height;
+	double	*transform;
+	double	*inv_trans;
 	double	*colour;
 }	t_object;
 
@@ -56,7 +55,6 @@ typedef struct s_intersect
 	t_object			*obj;
 	struct s_intersect	*next;
 }	t_intersect;
-
 
 typedef struct s_camera
 {
@@ -102,7 +100,5 @@ typedef struct s_comps
 	bool		inside;
 	t_object	*obj;
 }	t_comps;
-
-
 
 #endif

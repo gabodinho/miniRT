@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 16:31:33 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:33:20 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ static double	*view_transform(double *from, double *forward, double *up)
 	orientation[m2a(4, 2, 2)] = -forward[2];
 	trans = translate(-from[0], -from[1], -from[2]);
 	free(true_up);
-	true_up = mat_mat_prod(orientation, trans, 4);
+	true_up = mat_mat_prod(orientation, trans);
 	free(left);
 	free(orientation);
 	free(trans);
 	return (true_up);
 }
+
 static void	calc_pixel_size(t_camera *cam)
 {
 	double	aspect;
@@ -65,26 +66,6 @@ static void	calc_pixel_size(t_camera *cam)
 	cam -> pixel_size = cam -> half_width * 2 / HSIZE;
 	// printf("pixel size: %f\n", cam -> pixel_size);
 }
-
-/*
-values for camera position, direction vector and field_of_view
-have already been assigned at parsing level;
-*/
-/* void	init_camera(t_camera *cam)
-{
-	double	*from;
-	double	*direction;
-	double	*up;
-
-	calc_pixel_size(cam);
-	from = cam -> view_p;
-	direction = cam -> norm_v;
-	up = vector(0, 1, 0);
-	cam -> transform = view_transform(from, direction, up);
-	cam -> inv_trans = invert(cam -> transform, 4);
-	free(up);
-} */
-
 
 t_camera	*init_camera(char *input)
 {
@@ -108,6 +89,3 @@ t_camera	*init_camera(char *input)
 	free(up);
 	return (cam);
 }
-
-
-

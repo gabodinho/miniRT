@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 12:54:57 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:31:29 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static	void	get_colour(uint8_t *pixels, double *colour)
 		else if (colour[i] < 0)
 			*(pixels + i) = 0;
 		else
-			*(pixels + i) = (uint8_t) (colour[i] * 255);
+			*(pixels + i) = (uint8_t)(colour[i] * 255);
 	}
 	*(pixels + 3) = 255;
 	return ;
@@ -35,9 +35,9 @@ static	void	get_colour(uint8_t *pixels, double *colour)
 static void	calculate_op(t_comps *comps)
 {
 	comps -> over_p = point(
-		comps -> world_p[0] + EPSILON * comps -> norm_v[0],
-		comps -> world_p[1] + EPSILON * comps -> norm_v[1],
-		comps -> world_p[2] + EPSILON * comps -> norm_v[2]);
+			comps -> world_p[0] + EPSILON * comps -> norm_v[0],
+			comps -> world_p[1] + EPSILON * comps -> norm_v[1],
+			comps -> world_p[2] + EPSILON * comps -> norm_v[2]);
 }
 
 static t_comps	*prepare_comps(double t, double **ray, t_object *obj)
@@ -81,14 +81,13 @@ static double	*color_at(t_world *w, double **ray)
 	free_ray(ray);
 	free_intersect(xs);
 	return (colour);
-
 }
 
 void	render(t_world *w, t_camera *c, mlx_image_t *img)
 {
-	int	i;
-	int	j;
-	int	pixel_idx;
+	int		i;
+	int		j;
+	int		pixel_idx;
 	double	*colour;
 
 	i = -1;

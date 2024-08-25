@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 10:39:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 15:10:54 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 18:51:40 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,9 @@ static void	set_sphere_trans(t_object *sp)
 
 	scale_ = scale(sp -> diam / 2, sp -> diam / 2, sp -> diam / 2);
 	translate_ = translate(sp -> obj_p[0], sp -> obj_p[1], sp -> obj_p[2]);
-	// printf("translate: \n");
-	// print_vec(translate_, 4);
-	// printf("scale: \n");
-	// print_vec(scale_, 4);
-	sp -> transform = mat_mat_prod(translate_, scale_, 4);
+	sp -> transform = mat_mat_prod(translate_, scale_);
 	free(scale_);
 	free(translate_);
-	// printf("trafo: \n");
-	// print_vec(sp -> transform, 4);
 }
 
 t_object	*init_sphere(char *input)
