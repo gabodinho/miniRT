@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 17:44:13 by ggiertzu          #+#    #+#             */
-/*   Updated: 2023/06/03 00:46:02 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/25 13:42:21 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <string.h>
-//# include <bsd/string.h>
+/* # ifdef __linux__
+#  include <bsd/string.h>
+# endif */
 
 typedef struct s_list
 {
