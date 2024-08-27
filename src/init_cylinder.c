@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 21:37:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/28 01:50:53 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,30 @@ static void	set_cylinder_trans(t_object *cyl)
 	free_ray(temp);
 }
 
+t_object	*create_empty_obj(void)
+{
+	t_object	*obj;
+
+	obj = malloc(sizeof(t_object));
+	if (!obj)
+	{
+		perror("create_empty_obj");
+		exit(1);
+	}
+	obj -> colour = NULL;
+	obj -> inv_trans = NULL;
+	obj -> norm_v = NULL;
+	obj -> obj_p = NULL;
+	obj -> transform = NULL;
+	return (obj);
+}
+
 /* input is str starting at first non empty char after cy identifier */
 t_object	*init_cylinder(char *input)
 {
 	t_object	*cyl;
 
-	cyl = malloc(sizeof(t_object));
+	cyl = create_empty_obj();
 	cyl -> shape = CYLNDR;
 	input += 2 + skip_empty(input + 2);
 	cyl -> obj_p = get_double_touple(&input, 0);

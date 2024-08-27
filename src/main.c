@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/26 21:35:57 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/08/28 01:39:17 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	print_world_info(t_world *w)
 	print_vec(w->light_p, 0);
 	printf("bright: %f\namb colour: ", w->light_bright);
 	print_vec(w->amb_colour, -1);
-
 }
 
 static void	escape(void *ptr)
@@ -88,30 +87,40 @@ static void	escape(void *ptr)
 		mlx_close_window(mlx);
 }
 
-static void	clean_up(t_world *w)
+static void	free_cam(t_camera *cam)
 {
-	int			i;
-	t_object	*obj;
+	free(cam -> view_p);
+	free(cam -> norm_v);
+	free(cam -> transform);
+	free(cam -> inv_trans);
+	free(cam);
+}
+
+static void	free_object(t_object *obj)
+{
+	free(obj -> obj_p);
+	free(obj -> norm_v);
+	free(obj -> transform);
+	free(obj -> inv_trans);
+	free(obj -> colour);
+	free(obj);
+}
+
+void	clean_up(t_world *w)
+{
+	int	i;
 
 	i = -1;
 	while (++i < w -> n_obj)
 	{
-		obj = w -> objects[i];
-		free(obj -> obj_p);
-		free(obj -> norm_v);
-		free(obj -> transform);
-		free(obj -> inv_trans);
-		free(obj -> colour);
-		free(obj);
+		if (w -> objects[i])
+			free_object(w -> objects[i]);
 	}
-	free(w -> cam -> view_p);
-	free(w -> cam -> norm_v);
-	free(w -> cam -> transform);
-	free(w -> cam -> inv_trans);
-	free(w -> cam);
 	free(w -> objects);
 	free(w -> light_p);
 	free(w -> amb_colour);
+	if (w -> cam)
+		free_cam(w -> cam);
 	free(w);
 }
 
@@ -123,6 +132,8 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 		return (1);
+	// if (input_check(argv[1]))
+	// 	return (1);
 	w = init_world(argv[1]);
 	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
 	image = mlx_new_image(mlx, HSIZE, VSIZE);
