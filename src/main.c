@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 22:19:51 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/26 21:35:57 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int	main(int argc, char *argv[])
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_loop_hook(mlx, escape, (void *) mlx);
 	mlx_loop(mlx);
+	mlx_close_window(mlx);
 	mlx_terminate(mlx);
 	clean_up(w);
 	return (0);
