@@ -43,7 +43,9 @@ SRCS	:=	src/main.c \
 			src/init_sphere.c \
 			src/init_cylinder.c \
 			src/init_camera.c \
-			src/init_world.c
+			src/init_world.c	\
+			src/validate_input.c	\
+			src/read_scene.c
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 

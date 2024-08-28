@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
-# include "ft_printf.h"
+# include "../libft/ft_printf.h"
 # include "structs_minirt.h"
 # include <MLX42/MLX42.h>
 
