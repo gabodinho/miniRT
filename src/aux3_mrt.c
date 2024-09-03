@@ -6,9 +6,10 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:44:38 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:18:33 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/31 01:53:28 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minirt.h"
 
@@ -67,4 +68,29 @@ double	*get_double_touple(char **str, int kind)
 		return (vector(temp[0], temp[1], temp[2]));
 	else
 		return (point(temp[0] / 255.0, temp[1] / 255.0, temp[2] / 255.0));
+}
+
+void	abort_prog(char *str, t_world *w)
+{
+	perror(str);
+	clean_up(w);
+	exit(1);
+}
+
+t_world	*create_empty_world(void)
+{
+	t_world	*w;
+
+	w = malloc(sizeof(t_world));
+	if (!w)
+	{
+		perror("create_empty_world");
+		exit(1);
+	}
+	w -> amb_colour = NULL;
+	w -> light_p = NULL;
+	w -> objects = NULL;
+	w -> cam = NULL;
+	w -> n_obj = 0;
+	return (w);
 }

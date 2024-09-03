@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:19:24 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/28 01:49:20 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,13 @@ t_world	*init_world(char *file)
 	int		fd;
 	char	*line;
 
-	w = malloc(sizeof(t_world));
-	// include malloc protection
+	w = create_empty_world();
 	w -> n_obj = get_n_obj(file);
 	w -> objects = malloc(sizeof(t_object *) * w -> n_obj);
 	// include malloc protection
 	fd = open(file, O_RDONLY);
+	if (fd == -1)
+		abort_prog(file, w);
 	// include open protection
 	line = get_next_line(fd);
 	while (line)

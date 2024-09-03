@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:19:41 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/25 18:30:38 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/08/27 23:24:15 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_shadowed(t_world *w, double *p)
 	t_intersect	*hit;
 
 	dir = substract_points(w -> light_p, p);
-	dist = sqrt(pow(dir[0], 2) + pow(dir[0], 2) + pow(dir[0], 2));
+	dist = sqrt(pow(dir[0], 2) + pow(dir[1], 2) + pow(dir[2], 2));
 	normalize(dir);
 	r = ray(copy_vec(p, 4), dir);
 	xs = intersect_world(w, r);
