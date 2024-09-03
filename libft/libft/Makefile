@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggiertzu <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 18:33:58 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/03/09 00:43:44 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/09/03 16:07:59 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 HEADER = libft.h get_next_line.h
 CC = cc
-CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra -fPIE
 RM = rm -f
 
 SRCS = ft_atoi.c ft_isascii.c ft_memcmp.c ft_putendl_fd.c ft_strdup.c \
