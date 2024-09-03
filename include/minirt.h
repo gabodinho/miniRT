@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/03 21:00:36 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/03 21:08:00 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int			check_number(char **ptr);
 int			check_touple(char **ptr);
 int			check_sphere(char *get_line);
 int			syntax_check(char *file);
+int			validate_input_file(char *filename);
 
 // to be deleted
 void		print_vec(double *v, int size);

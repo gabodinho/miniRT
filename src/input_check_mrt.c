@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 17:44:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/03 20:57:21 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/03 21:11:53 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ int	check_light(char *line)
 
 	if (++n > 1)
 	{
-		printf("too many light sources\n");
+		printf("Error: too many light sources\n");
 		return (1);
 	}
 	if (check_touple(&line))
@@ -138,7 +138,7 @@ int	check_ambient(char *line)
 
 	if (++n > 1)
 	{
-		printf("too many ambient light sources\n");
+		printf("Error: too many ambient light sources\n");
 		return (1);
 	}
 	if (check_number(&line))
@@ -155,7 +155,7 @@ int	check_camera(char *line)
 
 	if (++n > 1)
 	{
-		printf("too many cameras\n");
+		printf("Error: too many cameras\n");
 		return (1);
 	}
 	if (check_touple(&line))

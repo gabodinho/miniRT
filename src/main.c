@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/03 20:46:53 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/03 21:10:20 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,8 +165,12 @@ int	main(int argc, char *argv[])
 	
 	if (argc != 2)
 		return (1);
+	if (validate_input_file(argv[1]))
+		return (2);
+	else
+		printf("file name: valid!\n");
 	if (syntax_check(argv[1]))
-		return (1);
+		return (3);
 	else
 		printf("syntax check: pass!\n");
 	w = init_world(argv[1]);
