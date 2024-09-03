@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/28 01:39:17 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:46:53 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,10 +130,45 @@ int	main(int argc, char *argv[])
 	mlx_t			*mlx;
 	mlx_image_t		*image;
 
+	// char *a = "1234.356,1234.356";
+	// char *b = "1234356,12r34.356,-1234.356";
+	// char *c = "-123,1,0";
+	// char *d = "1234356.,1234.356,1234.356";
+	// char *e = "1234356,1234.356 ,1234.356";
+	// char *f = "123,1234.356,,345";
+	// char *g = "1234,252435,22354,";
+	// printf("%s\n", a);
+	// printf("%d; after: ", check_touple(&a));
+	// printf("%s\n", a);
+	// printf("%s\n", b);
+	// printf("%d; after: ", check_touple(&b));
+	// printf("%s\n", b);
+	// printf("%s\n", c);
+	// printf("%d; after: ", check_touple(&c));
+	// printf("%s\n", c);
+	// printf("%s\n", d);
+	// printf("%d; after: ", check_touple(&d));
+	// printf("%s\n", d);
+	// printf("%s\n", e);
+	// printf("%d; after: ", check_touple(&e));
+	// printf("%s\n", e);
+	// printf("%s\n", f);
+	// printf("%d; after: ", check_touple(&f));
+	// printf("%s\n", f);
+	// printf("%s\n", g);
+	// printf("%d; after: ", check_touple(&g));
+	// printf("%s\n", g);
+	// // printf("%d, %s; new pos: %s\n", a, check_number(&a), a);
+	
+	// printf("input check: %d\n", check_sphere("	0.0,0.0,10  10,234,234 10,0,255"));
+	
+	
 	if (argc != 2)
 		return (1);
-	// if (input_check(argv[1]))
-	// 	return (1);
+	if (syntax_check(argv[1]))
+		return (1);
+	else
+		printf("syntax check: pass!\n");
 	w = init_world(argv[1]);
 	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
 	image = mlx_new_image(mlx, HSIZE, VSIZE);
