@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/28 01:55:56 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/03 20:27:48 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,10 @@ void		clean_up(t_world *w);
 t_object	*create_empty_obj(void);
 t_world		*create_empty_world(void);
 void		abort_prog(char *str, t_world *w);
+int			check_number(char **ptr);
+int			check_touple(char **ptr);
+int			check_sphere(char *get_line);
+int			syntax_check(char *file);
 
 // to be deleted
 void		print_vec(double *v, int size);

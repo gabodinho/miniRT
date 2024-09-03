@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/08/25 18:13:55 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/09/03 19:56:04 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ SRCS	:=	src/main.c \
 			src/init_sphere.c \
 			src/init_cylinder.c \
 			src/init_camera.c \
-			src/init_world.c
+			src/init_world.c \
+			src/input_check_mrt.c
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
