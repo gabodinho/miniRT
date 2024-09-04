@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cylinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/28 01:50:53 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 22:35:29 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ t_object	*create_empty_obj(void)
 	obj -> norm_v = NULL;
 	obj -> obj_p = NULL;
 	obj -> transform = NULL;
+	obj -> diam = 0;
 	return (obj);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/28 01:49:20 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:27:06 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,11 @@ static void	set_light(t_world *w, char *input)
 
 static void	set_ambient(t_world *w, char *input)
 {
-	double	amb_ratio;
-
 	input += 1 + skip_empty(input + 1);
-	input += get_double(&amb_ratio, input);
+	input += get_double(&w -> amb_ratio, input);
 	while (*input == ' ')
 		input++;
 	w -> amb_colour = get_double_touple(&input, 2);
-	vec_skal_prod(w -> amb_colour, amb_ratio, 3);
 }
 
 static int	get_n_obj(char *file)

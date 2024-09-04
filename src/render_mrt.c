@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_mrt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:35:43 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 21:30:47 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:26:01 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	render(t_world *w, t_camera *c, mlx_image_t *img)
 	int		pixel_idx;
 	double	*colour;
 
+	vec_skal_prod(w -> amb_colour, w -> amb_ratio, 3);
 	i = -1;
 	pixel_idx = 0;
 	while (++i < HSIZE)

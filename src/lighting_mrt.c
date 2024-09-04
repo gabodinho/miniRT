@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lighting_mrt.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 22:15:46 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 21:41:42 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:24:32 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

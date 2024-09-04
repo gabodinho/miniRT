@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_minirt.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/03 19:40:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 23:25:28 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_world	// free
 	double		*light_p;	// free
 	double		light_bright;
 	double		*amb_colour;	// free
+	double		amb_ratio;
 	t_camera	*cam;
 }	t_world;
 
