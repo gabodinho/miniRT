@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/03 21:10:20 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 11:11:12 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -174,9 +174,13 @@ int	main(int argc, char *argv[])
 	else
 		printf("syntax check: pass!\n");
 	w = init_world(argv[1]);
+	if (semantic_check(w))
+		return (4);
+	else
+		printf("semantics check: pass!\n");
 	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
 	image = mlx_new_image(mlx, HSIZE, VSIZE);
-	print_world_info(w);
+	// print_world_info(w);
 	render(w, w -> cam, image);
 	mlx_image_to_window(mlx, image, 0, 0);
 	mlx_loop_hook(mlx, escape, (void *) mlx);
