@@ -6,7 +6,7 @@
 /*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 17:44:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 11:11:22 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/04 13:01:08 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,27 @@ error at line %d: %s", count, line);
 		line = get_next_line(fd);
 	}
 	close(fd);
+	return (0);
+}
+
+
+int	semantic_check(t_world *w)
+{
+	if (!w -> cam)
+	{
+		printf("Error: semantics check failed: no camera\n");
+		return (1);
+	}
+	else if (!w -> light_p)
+	{
+		printf("Error: semantics check failed: no light source\n");
+		return (1);
+	}
+	else if (!w -> amb_colour)
+	{
+		printf("Error: semantics check failed: no ambient light specified\n");
+		return (1);
+	}
 	return (0);
 }
 

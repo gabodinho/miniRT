@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/03 21:08:00 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:40:40 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ int			check_touple(char **ptr);
 int			check_sphere(char *get_line);
 int			syntax_check(char *file);
 int			validate_input_file(char *filename);
+int			semantic_check(t_world *w);
+
 
 // to be deleted
 void		print_vec(double *v, int size);

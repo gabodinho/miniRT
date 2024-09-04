@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux3_mrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:44:38 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/31 01:53:28 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:51:08 by gabodinho        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_world	*create_empty_world(void)
 	}
 	w -> amb_colour = NULL;
 	w -> light_p = NULL;
+	w -> light_bright = 0;
 	w -> objects = NULL;
 	w -> cam = NULL;
 	w -> n_obj = 0;
