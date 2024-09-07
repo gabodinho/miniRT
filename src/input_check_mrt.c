@@ -6,7 +6,7 @@
 /*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 17:44:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 16:19:09 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/07 18:48:35 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,4 +293,3 @@ int	semantic_check(t_world *w)
 	}
 	return (0);
 }
-

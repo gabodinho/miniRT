@@ -3,37 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 11:11:12 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/07 19:37:53 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-void	print_intersect(t_intersect *list)
+/*void	print_intersect(t_intersect *list)
 {
 	int	i;
 
 	i = 0;
 	while (list)
 	{
-		printf("obj %d: %d, with itersect val: %f\n", i++, list -> obj -> shape, list -> t);
+		printf("obj %d: %d, with itersect val: %f\n",
+			i++, list -> obj -> shape, list -> t);
 		list = list -> next;
 	}
 }
 
-void    print_vec(double *v, int size)
+void	print_vec(double *v, int size)
 {
-    char *str;
+	char	*str ;
 
 	if (!v)
-		return;
-    if (size > 0)
-    {
-        for (int i = 0; i < size; i++)
-            printf("row %d: %f %f %f %f\n", i, v[i*size], v[size*i+1], v[size*i+2], v[size*i+3]);
+		return ;
+	if (size > 0)
+	{
+		int i = 0;
+		while (i < size)
+		i++,
+        	printf("row %d: %f %f %f %f\n", i, v[i*size],
+				v[size*i+1], v[size*i+2], v[size*i+3]);
         return;
     }
 	else if (size == -1)
@@ -85,7 +88,7 @@ static void	escape(void *ptr)
 	mlx = (mlx_t *) ptr;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
-}
+}*/
 
 static void	free_cam(t_camera *cam)
 {
@@ -124,69 +127,68 @@ void	clean_up(t_world *w)
 	free(w);
 }
 
-int	main(int argc, char *argv[])
+void handle_key(mlx_key_data_t keydata, void *param)
 {
-	t_world	*w;
-	mlx_t			*mlx;
-	mlx_image_t		*image;
+    mlx_t *mlx = (mlx_t *)param;
 
-	// char *a = "1234.356,1234.356";
-	// char *b = "1234356,12r34.356,-1234.356";
-	// char *c = "-123,1,0";
-	// char *d = "1234356.,1234.356,1234.356";
-	// char *e = "1234356,1234.356 ,1234.356";
-	// char *f = "123,1234.356,,345";
-	// char *g = "1234,252435,22354,";
-	// printf("%s\n", a);
-	// printf("%d; after: ", check_touple(&a));
-	// printf("%s\n", a);
-	// printf("%s\n", b);
-	// printf("%d; after: ", check_touple(&b));
-	// printf("%s\n", b);
-	// printf("%s\n", c);
-	// printf("%d; after: ", check_touple(&c));
-	// printf("%s\n", c);
-	// printf("%s\n", d);
-	// printf("%d; after: ", check_touple(&d));
-	// printf("%s\n", d);
-	// printf("%s\n", e);
-	// printf("%d; after: ", check_touple(&e));
-	// printf("%s\n", e);
-	// printf("%s\n", f);
-	// printf("%d; after: ", check_touple(&f));
-	// printf("%s\n", f);
-	// printf("%s\n", g);
-	// printf("%d; after: ", check_touple(&g));
-	// printf("%s\n", g);
-	// // printf("%d, %s; new pos: %s\n", a, check_number(&a), a);
-	
-	// printf("input check: %d\n", check_sphere("	0.0,0.0,10  10,234,234 10,0,255"));
-	
-	
-	if (argc != 2)
-		return (1);
-	if (validate_input_file(argv[1]))
-		return (2);
-	else
-		printf("file name: valid!\n");
-	if (syntax_check(argv[1]))
-		return (3);
-	else
-		printf("syntax check: pass!\n");
-	w = init_world(argv[1]);
-	if (semantic_check(w))
-		return (4);
-	else
-		printf("semantics check: pass!\n");
-	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
-	image = mlx_new_image(mlx, HSIZE, VSIZE);
-	// print_world_info(w);
-	render(w, w -> cam, image);
-	mlx_image_to_window(mlx, image, 0, 0);
-	mlx_loop_hook(mlx, escape, (void *) mlx);
-	mlx_loop(mlx);
-	mlx_close_window(mlx);
-	mlx_terminate(mlx);
-	clean_up(w);
-	return (0);
+    // Check if the ESC key was pressed and if it was pressed down
+    if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
+    {
+        mlx_terminate(mlx); // Terminate the MLX window
+        exit(0); // Exit the program cleanly
+    }
 }
+
+int main(int argc, char *argv[])
+{
+    t_world *w;
+    mlx_t *mlx;
+    mlx_image_t *image;
+
+    // Check command-line arguments
+    if (argc != 2)
+        return (1);
+
+    // Validate input file
+    if (validate_input_file(argv[1]))
+        return (2);
+    else
+        printf("file name: valid!\n");
+
+    // Check syntax
+    if (syntax_check(argv[1]))
+        return (3);
+    else
+        printf("syntax check: pass!\n");
+
+    // Initialize world
+    w = init_world(argv[1]);
+
+    // Check semantics
+    if (semantic_check(w))
+        return (4);
+    else
+        printf("semantics check: pass!\n");
+
+    // Initialize MLX and create a new image
+    mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
+    image = mlx_new_image(mlx, HSIZE, VSIZE);
+
+    // Render the image
+    render(w, w->cam, image);
+    mlx_image_to_window(mlx, image, 0, 0);
+
+    // Register the key handler
+    mlx_key_hook(mlx, handle_key, mlx);
+
+    // Start the MLX event loop
+    mlx_loop(mlx);
+
+    // Cleanup and terminate
+    mlx_close_window(mlx);
+    mlx_terminate(mlx);
+    clean_up(w);
+
+    return (0);
+}
+
