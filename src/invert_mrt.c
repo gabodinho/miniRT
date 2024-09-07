@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   invert_mrt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:15:15 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/14 13:35:41 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/07 16:28:58 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ double	*invert(double *m, int size)
 	double	det;
 
 	det = determinant(m, size);
-	// throw error
 	if (!det)
 		return (NULL);
 	res = malloc(sizeof(double) * size * size);

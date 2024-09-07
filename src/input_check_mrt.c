@@ -3,36 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_mrt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 17:44:37 by ggiertzu          #+#    #+#             */
 /*   Updated: 2024/09/07 17:51:33 by ggiertzu         ###   ########.fr       */
+=======
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/03 17:44:37 by ggiertzu          #+#    #+#             */
+/*   Updated: 2024/09/07 16:19:09 by shola_linux      ###   ########.fr       */
+>>>>>>> c74baba0477a9a439e3fcc362359b4f10eec6134
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// int	check_number(char **ptr)
-// {
-// 	if (**ptr == '-')
-// 		*ptr += 1;
-// 	if (!ft_isdigit(**ptr))
-// 		return (1);
-// 	while (**ptr && ft_isdigit(**ptr))
-// 		*ptr += 1;
-// 	if (**ptr == '.' && *(*ptr + 1) && ft_isdigit(*(*ptr + 1)))
-// 		*ptr += 1;
-// 	else if (ft_strchr(" ,\n\t", **ptr))
-// 		return (0);
-// 	else if (!ft_isdigit(**ptr))
-// 		return (1);
-// 	while (**ptr && ft_isdigit(**ptr))
-// 		*ptr += 1;
-// 	if (ft_strchr(" \n\t", **ptr))
-// 		return (0);
-// 	else
-// 		return (1);
-// }
 
 int	check_number(char **ptr)
 {
@@ -221,7 +206,6 @@ error at line %d: %s", count, line);
 	close(fd);
 	return (0);
 }
-
 int	check_obj_bounds(t_object *obj)
 {
 	int		i;

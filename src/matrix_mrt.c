@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix_mrt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:17:57 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/25 18:29:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:32:53 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ double	*identity_matrix(int size)
 	int		i;
 
 	mat = malloc(sizeof(double) * size * size);
-	// throw error
 	if (!mat)
 		return (NULL);
 	ft_memset(mat, 0, size * size * sizeof(double));

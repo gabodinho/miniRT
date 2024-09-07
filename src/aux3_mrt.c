@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 17:44:38 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 18:09:58 by ggiertzu         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/09/07 18:22:17 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 
 #include "minirt.h"

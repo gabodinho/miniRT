@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
 /*   Updated: 2024/09/07 18:03:58 by ggiertzu         ###   ########.fr       */
+=======
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
+/*   Updated: 2024/09/07 16:14:55 by shola_linux      ###   ########.fr       */
+>>>>>>> c74baba0477a9a439e3fcc362359b4f10eec6134
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +44,6 @@ static int	get_n_obj(char *file)
 	int		res;
 
 	fd = open(file, O_RDONLY);
-	// include open protection
 	line = get_next_line(fd);
 	res = 0;
 	while (line)
@@ -80,11 +86,9 @@ t_world	*init_world(char *file)
 	w = create_empty_world();
 	w -> n_obj = get_n_obj(file);
 	w -> objects = malloc(sizeof(t_object *) * w -> n_obj);
-	// include malloc protection
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		abort_prog(file, w);
-	// include open protection
 	line = get_next_line(fd);
 	while (line)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_sphere.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/23 10:39:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 23:10:08 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/07 16:13:32 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ t_object	*init_sphere(char *input)
 	sphere -> colour = get_double_touple(&input, 2);
 	set_sphere_trans(sphere);
 	sphere -> inv_trans = invert(sphere -> transform, 4);
-	// sphere -> norm_v = point(0, 0, 0);
 	return (sphere);
 }
