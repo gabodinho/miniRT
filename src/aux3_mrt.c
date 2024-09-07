@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux3_mrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:44:38 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 12:51:08 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/07 18:09:58 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	get_double(double *f, char *str)
 	else
 		i++;
 	temp = (double)(ft_atoi(str + i));
-	while (!ft_strchr(", \n", str[i + len_dec]))
+	while (!ft_strchr(", \t\n", str[i + len_dec]))
 		len_dec++;
 	*f += temp / pow(10, len_dec);
 	if (*f < 1 && *f > 0 && *str == '-')

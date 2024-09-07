@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_check_mrt.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 17:44:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 23:34:09 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/07 17:51:33 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,12 @@ int	syntax_check(char *file)
 		{
 			printf("syntax check: failed!\n\
 error at line %d: %s", count, line);
-			free(line);
+			while (line)
+			{
+				free(line);
+				line = get_next_line(fd);
+			}
+			// free(line);
 			close(fd);
 			return (1);
 		}
