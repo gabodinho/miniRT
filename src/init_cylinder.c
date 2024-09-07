@@ -6,7 +6,7 @@
 /*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 18:44:29 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/07 19:43:26 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ t_object	*create_empty_obj(void)
 	obj -> obj_p = NULL;
 	obj -> transform = NULL;
 	obj -> diam = 0;
+	obj -> height = 0;
 	return (obj);
 }
 

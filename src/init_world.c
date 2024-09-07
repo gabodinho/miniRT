@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 16:14:55 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/07 18:53:09 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ static void	set_ambient(t_world *w, char *input)
 {
 	input += 1 + skip_empty(input + 1);
 	input += get_double(&w -> amb_ratio, input);
-	while (*input == ' ')
-		input++;
+	input += skip_empty(input);
 	w -> amb_colour = get_double_touple(&input, 2);
 }
 

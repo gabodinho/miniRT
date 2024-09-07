@@ -6,9 +6,12 @@
 /*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:44:38 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 19:35:37 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/07 19:42:31 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+
 
 #include "minirt.h"
 
@@ -31,7 +34,7 @@ int	get_double(double *f, char *str)
 	i = 0;
 	len_dec = 0;
 	*f = (double) ft_atoi(str);
-	while (!ft_strchr(", .\n", str[i]))
+	while (!ft_strchr(", .\t\n", str[i]))
 		i++;
 	if (str[i] == ',')
 		return (i + 1);
@@ -40,7 +43,7 @@ int	get_double(double *f, char *str)
 	else
 		i++;
 	temp = (double)(ft_atoi(str + i));
-	while (!ft_strchr(", \n", str[i + len_dec]))
+	while (!ft_strchr(", \t\n", str[i + len_dec]))
 		len_dec++;
 	*f += temp / pow(10, len_dec);
 	if (*f < 1 && *f > 0 && *str == '-')

@@ -6,11 +6,26 @@
 /*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 17:44:37 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 18:48:35 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/07 19:41:55 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	print_error(int ret_val, char *msg)
+{
+	char	*type;
+	
+	printf("Error\n");
+	if (ret_val == 1)
+		type = "file name: invalid\n";
+	else if (ret_val == 2)
+		type = "syntax check: failed\n";
+	else if (ret_val == 3)
+		type = "semantics check: failed\n";
+	printf("%s%s", type, msg);	
+	return (ret_val);
+}
 
 int	check_number(char **ptr)
 {
@@ -98,10 +113,7 @@ int	check_light(char *line)
 	static int	n;
 
 	if (++n > 1)
-	{
-		printf("Error: too many light sources\n");
-		return (1);
-	}
+		return (print_error(3, "too many light sources\n"));
 	if (check_touple(&line))
 		return (1);
 	line = line + skip_empty(line);
@@ -115,10 +127,7 @@ int	check_ambient(char *line)
 	static int	n;
 
 	if (++n > 1)
-	{
-		printf("Error: too many ambient light sources\n");
-		return (1);
-	}
+		return (print_error(3, "too many ambient light sources\n"));
 	if (check_number(&line))
 		return (1);
 	line = line + skip_empty(line);
@@ -132,10 +141,7 @@ int	check_camera(char *line)
 	static int	n;
 
 	if (++n > 1)
-	{
-		printf("Error: too many cameras\n");
-		return (1);
-	}
+		return (print_error(3, "too many cameras\n"));
 	if (check_touple(&line))
 		return (1);
 	line = line + skip_empty(line);
@@ -168,6 +174,16 @@ int	check_line(char *line)
 		return (1);
 }
 
+static void	finish_loop(char *line, int fd)
+{
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		close(fd);		
+	}
+}
+
 int	syntax_check(char *file)
 {
 	int		fd;
@@ -182,10 +198,9 @@ int	syntax_check(char *file)
 		count++;
 		if (check_line(line))
 		{
-			printf("syntax check: failed!\n\
-error at line %d: %s", count, line);
-			free(line);
-			close(fd);
+			print_error(2, "error at line: ");
+			printf("%d: %s", count, line);
+			finish_loop(line, fd);
 			return (1);
 		}
 		free(line);
@@ -206,21 +221,12 @@ int	check_obj_bounds(t_object *obj)
 		if (obj -> norm_v)
 			a += pow(obj -> norm_v[i], 2);
 		if (obj -> colour[i] < 0 || obj -> colour[i] > 1)
-		{
-			printf("object colour out of bounds\n");
-			return (1);
-		}
+			return (print_error(3, "object colour out of bounds\n"));
 	}
 	if (obj -> norm_v && (sqrt(a) < 0.99 || sqrt(a) > 1.01))
-	{
-		printf("object normal vector out of bounds\n");
-		return (1);
-	}
+		return (print_error(3, "object normal vector out of bounds\n"));
 	if (obj -> diam < 0 || obj -> height < 0)
-	{
-		printf("object height/diameter out of bounds\n");
-		return (1);
-	}
+		return (print_error(3, "object height/diameter out of bounds\n"));
 	return (0);
 }
 
@@ -235,27 +241,15 @@ int	check_cam_light_bounds(t_world *w)
 	{
 		a += pow(w -> cam -> norm_v[i], 2);
 		if (w ->amb_colour[i] < 0 || w -> amb_colour[i] > 1)
-		{
-			printf("ambient colour out of bounds\n");
-			return (1);
-		}
+			return (print_error(3, "ambient colour out of bounds\n"));
 	}
 	if (sqrt(a) < 0.99 || sqrt(a) > 1.01)
-	{
-		printf("camera normal vector out of bounds\n");
-		return (1);
-	}
+		return (print_error(3, "camera normal vector out of bounds\n"));
 	if (w -> light_bright < 0 || w -> light_bright > 1
 	|| w -> amb_ratio < 0 || w -> amb_ratio > 1)
-	{
-		printf("light_bright/ambient_ratio out of bounds\n");
-		return (1);
-	}
+		return (print_error(3, "light_bright/ambient_ratio out of bounds\n"));
 	if (w -> cam -> field_of_view < 0 || w -> cam -> field_of_view > 180)
-	{
-		printf("camera field of view out of bounds\n");
-		return (1);
-	}
+		return (print_error(3, "camera field of view out of bounds\n"));
 	return (0);
 }
 
@@ -283,13 +277,12 @@ int	semantic_check(t_world *w)
 		str = "no light source\n";
 	else if (!w -> amb_colour)
 		str = "no ambient light specified\n";
-	else if (check_boundaries(w))
-		str = "value out of bounds\n";
 	if (str)
 	{
-		printf("Error: semantics check failed: %s", str);
 		clean_up(w);
-		return (1);
+		return (print_error(3, str));
 	}
+	else if (check_boundaries(w))
+		return (3);
 	return (0);
 }
