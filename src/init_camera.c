@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 23:35:18 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/07 16:11:31 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ static void	calc_pixel_size(t_camera *cam)
 		cam -> half_height = half_view;
 	}
 	cam -> pixel_size = cam -> half_width * 2 / HSIZE;
-	// printf("pixel size: %f\n", cam -> pixel_size);
 }
 
 t_camera	*init_camera(char *input)
@@ -73,14 +72,12 @@ t_camera	*init_camera(char *input)
 	double		*up;
 
 	cam = malloc(sizeof(t_camera));
-	// include malloc protection
 	input += 1 + skip_empty(input + 1);
 	cam -> view_p = get_double_touple(&input, 0);
 	cam -> norm_v = get_double_touple(&input, 1);
 	get_double(&cam -> field_of_view, input);
 	calc_pixel_size(cam);
 	up = vector(0, 1, 0);
-	// keep in mind that program cannot compute inv_mat when norm vector (0,y,0)
 	cam -> transform = view_transform(cam -> view_p, cam -> norm_v, up);
 	cam -> inv_trans = invert(cam -> transform, 4);
 	free(up);

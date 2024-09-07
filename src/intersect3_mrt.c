@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersect3_mrt.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:48:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:01:53 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:28:07 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,9 @@ static void	intersect_caps(double *xs, double **ray, int del_ray)
 		return ;
 	}
 	xs[0] = (-0.5 - ray[0][1]) / ray[1][1];
-	// check lower cap
 	if (!check_cap(ray, xs[0]))
 		xs[0] = -1;
 	xs[1] = (0.5 - ray[0][1]) / ray[1][1];
-	// check upper cap
 	if (!check_cap(ray, xs[1]))
 		xs[1] = -1;
 	if (del_ray)
@@ -88,7 +86,6 @@ void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst)
 
 	ray_o = transform(ray, obj -> inv_trans);
 	temp[0] = ray_o[1][0] * ray_o[1][0] + ray_o[1][2] * ray_o[1][2];
-	// ray is collinear with cylinder and thus doesnt intersect the sides
 	if (temp[0] < EPSILON)
 	{
 		intersect_caps(xs, ray_o, 1);
@@ -98,7 +95,6 @@ void	intersect_cylinder(double **ray, t_object *obj, t_intersect **lst)
 	temp[1] = 2 * (ray_o[0][0] * ray_o[1][0] + ray_o[0][2] * ray_o[1][2]);
 	temp[2] = temp[1] * temp[1] - 4 * temp[0]
 		* (ray_o[0][0] * ray_o[0][0] + ray_o[0][2] * ray_o[0][2] - 1);
-	// ray doesnt intersect neither side nor caps
 	if (temp[2] < 0)
 	{
 		free_ray(ray_o);

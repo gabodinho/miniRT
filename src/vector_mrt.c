@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_mrt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:15:08 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:32:58 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:41:09 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ double	*vector(double a, double b, double c)
 	double	*vector;
 
 	vector = malloc(sizeof(double) * 4);
-	// create error message
 	if (!vector)
 		return (0);
 	vector[0] = a;
@@ -32,7 +31,6 @@ double	*point(double a, double b, double c)
 	double	*point;
 
 	point = malloc(sizeof(double) * 4);
-	// create error message
 	if (!point)
 		return (0);
 	point[0] = a;

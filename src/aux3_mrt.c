@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   aux3_mrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:44:38 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 12:51:08 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/07 15:08:08 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minirt.h"
 

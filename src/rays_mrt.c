@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rays_mrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 18:19:41 by gabodinho         #+#    #+#             */
-/*   Updated: 2024/08/27 23:24:15 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/07 16:34:14 by shola_linux      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ double	**ray(double *origin, double *direction)
 	double	**ray;
 
 	ray = malloc(sizeof(double *) * 2);
-	// throw errror
 	if (!ray)
 		return (NULL);
 	ray[0] = origin;

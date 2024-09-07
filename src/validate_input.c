@@ -1,9 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_input.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/07 16:37:05 by shola_linux       #+#    #+#             */
+/*   Updated: 2024/09/07 16:39:46 by shola_linux      ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <fcntl.h>  // For open
 #include <unistd.h> // For close
 #include <string.h> // For strcmp
 #include <stdio.h>  // For perror
 
-// Function to check if the file exists and is of correct format
 int validate_input_file(char *filename)
 {
     int fd;
