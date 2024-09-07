@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_world.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< HEAD
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 18:03:58 by ggiertzu         ###   ########.fr       */
-=======
-/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/25 12:43:23 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 16:14:55 by shola_linux      ###   ########.fr       */
->>>>>>> c74baba0477a9a439e3fcc362359b4f10eec6134
+/*   Updated: 2024/09/07 18:53:09 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +23,8 @@ static void	set_ambient(t_world *w, char *input)
 {
 	input += 1 + skip_empty(input + 1);
 	input += get_double(&w -> amb_ratio, input);
-	while (*input == ' ')
-		input++;
+	input += skip_empty(input);
 	w -> amb_colour = get_double_touple(&input, 2);
-	print_vec(w -> amb_colour, -1);
-	printf("amb ratio: %f\n", w -> amb_ratio);
 }
 
 static int	get_n_obj(char *file)

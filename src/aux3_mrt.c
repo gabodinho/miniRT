@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/07 18:22:17 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/07 18:53:29 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	get_double(double *f, char *str)
 	i = 0;
 	len_dec = 0;
 	*f = (double) ft_atoi(str);
-	while (!ft_strchr(", .\n", str[i]))
+	while (!ft_strchr(", .\t\n", str[i]))
 		i++;
 	if (str[i] == ',')
 		return (i + 1);
