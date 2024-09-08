@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/28 01:35:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:05:51 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,16 @@ static void	set_plane_trans(t_object *pl)
 	double	*translate_;
 	double	*temp;
 
-	rot_x_ = rot_x(acos(pl -> norm_v[1]));
-	rot_y_ = rot_y(acos(pl -> norm_v[2]));
+	// rot_x_ = rot_x(acos(pl -> norm_v[1]));
+	// rot_y_ = rot_y(acos(pl -> norm_v[2]));
+	if (pl -> norm_v[2] >= 0)
+		rot_x_ = rot_x(acos(pl -> norm_v[1]));
+	else
+		rot_x_ = rot_x(-acos(pl -> norm_v[1]));
+	if (pl -> norm_v[0] >= 0)
+		rot_y_ = rot_y(acos(pl -> norm_v[2]));
+	else
+		rot_y_ = rot_y(-acos(pl -> norm_v[2]));
 	translate_ = translate(pl -> obj_p[0], pl -> obj_p[1], pl -> obj_p[2]);
 	temp = mat_mat_prod(rot_y_, rot_x_);
 	pl -> transform = mat_mat_prod(translate_, temp);

@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/08 18:59:30 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/08 20:25:33 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,6 @@ int			get_double(double *f, char *str);
 t_object	*init_sphere(char *input);
 t_object	*init_cylinder(char *input);
 t_camera	*init_camera(char *input);
-// void		set_light(t_world *w, char *input);
-// void		set_ambient(t_world *w, char *input);
-// int			get_n_obj(char *file);
 t_world		*init_world(char *file);
 int			skip_empty(char *line);
 void		intersect_cylinder(double **ray, t_object *obj, t_intersect **lst);
@@ -78,10 +75,12 @@ int			check_number(char **ptr);
 int			check_touple(char **ptr);
 int			check_sphere(char *get_line);
 int			syntax_check(char *file);
-int			validate_input_file(char *filename);
 int			semantic_check(t_world *w);
 int			print_error(int ret_val, char *msg);
-
+int			check_sphere(char *line);
+int			check_cylinder(char *line);
+int			check_plane(char *line);
+int			check_light(char *line);
 
 // to be deleted
 void		print_vec(double *v, int size);

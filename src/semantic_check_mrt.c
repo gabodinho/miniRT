@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:39:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/08 18:40:23 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/08 20:15:19 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	check_cam_light_bounds(t_world *w)
 	if (sqrt(a) < 0.99 || sqrt(a) > 1.01)
 		return (print_error(3, "camera normal vector out of bounds\n"));
 	if (w -> light_bright < 0 || w -> light_bright > 1
-	|| w -> amb_ratio < 0 || w -> amb_ratio > 1)
+		|| w -> amb_ratio < 0 || w -> amb_ratio > 1)
 		return (print_error(3, "light_bright/ambient_ratio out of bounds\n"));
 	if (w -> cam -> field_of_view < 0 || w -> cam -> field_of_view > 180)
 		return (print_error(3, "camera field of view out of bounds\n"));
@@ -86,6 +86,9 @@ int	semantic_check(t_world *w)
 		return (print_error(3, str));
 	}
 	else if (check_boundaries(w))
+	{
+		clean_up(w);
 		return (3);
+	}
 	return (0);
 }

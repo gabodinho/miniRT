@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 01:36:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/08/25 18:03:17 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/08 21:21:41 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ double	*rot_y(double phi)
 {
 	double	*m;
 
+	printf("phi: %.2f * pi\n", phi / M_PI);
 	m = identity_matrix(4);
 	m[m2a(4, 0, 0)] = cos(phi);
 	m[m2a(4, 2, 2)] = cos(phi);

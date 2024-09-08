@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cylinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 19:43:26 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/08 22:11:04 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,14 @@ static void	set_cylinder_trans(t_object *cyl)
 	double	*scale_;
 	double	**temp;
 
-	rot_x_ = rot_x(acos(cyl -> norm_v[1]));
-	rot_y_ = rot_y(acos(cyl -> norm_v[2]));
+	if (cyl -> norm_v[2] >= 0)
+		rot_x_ = rot_x(acos(cyl -> norm_v[1]));
+	else
+		rot_x_ = rot_x(-acos(cyl -> norm_v[1]));
+	if (cyl -> norm_v[0] >= 0)
+		rot_y_ = rot_y(acos(cyl -> norm_v[2]));
+	else
+		rot_y_ = rot_y(-acos(cyl -> norm_v[2]));
 	translate_ = translate(cyl -> obj_p[0], cyl -> obj_p[1], cyl -> obj_p[2]);
 	scale_ = scale(cyl -> diam / 2, cyl -> height, cyl -> diam / 2);
 	temp = malloc(sizeof(double *) * 2);
@@ -74,5 +80,6 @@ t_object	*init_cylinder(char *input)
 	cyl -> colour = get_double_touple(&input, 2);
 	set_cylinder_trans(cyl);
 	cyl -> inv_trans = invert(cyl -> transform, 4);
+	print_vec(cyl -> norm_v, 0);
 	return (cyl);
 }

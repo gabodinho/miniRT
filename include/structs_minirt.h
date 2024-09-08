@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs_minirt.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 14:29:30 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 23:25:28 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/08 20:31:33 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,36 +33,36 @@ geometric, positional and material properties;
 not all values for all shapes!
 colour vetors are being set up during initialisation: rgb val / 255
 */
-typedef struct s_object	// free
+typedef struct s_object
 {
 	t_shape	shape;
-	double	*obj_p;		// free
-	double	*norm_v;	// free
+	double	*obj_p;
+	double	*norm_v;
 	double	diam;
 	double	height;
-	double	*transform;	// free
-	double	*inv_trans;	// free
-	double	*colour;	// free
+	double	*transform;
+	double	*inv_trans;
+	double	*colour;
 }	t_object;
 
 /*
 t: intersection value;
 obj: respective object
 */
-typedef struct s_intersect	// free
+typedef struct s_intersect
 {
 	double				t;
-	t_object			*obj;	// free
+	t_object			*obj;
 	struct s_intersect	*next;
 }	t_intersect;
 
 typedef struct s_camera
 {
-	double	*view_p;	// free
-	double	*norm_v;	// free
+	double	*view_p;
+	double	*norm_v;
 	double	field_of_view;
-	double	*transform;	// free
-	double	*inv_trans;	// free
+	double	*transform;
+	double	*inv_trans;
 	double	half_width;
 	double	half_height;
 	double	pixel_size;
@@ -73,13 +73,13 @@ world contains an array of all the objects and the light information.
 colour vetors are being set up during initialisation: rgb val / 255
 amb_colour = amb_colour * ambient_intensity.
 */
-typedef struct s_world	// free
+typedef struct s_world
 {
-	t_object	**objects;	// free free
+	t_object	**objects;
 	int			n_obj;
-	double		*light_p;	// free
+	double		*light_p;
 	double		light_bright;
-	double		*amb_colour;	// free
+	double		*amb_colour;
 	double		amb_ratio;
 	t_camera	*cam;
 }	t_world;
@@ -92,12 +92,12 @@ normal_vec: normalized surface normal vector at hit;
 inside: true if inside of body;
 obj: object vector;
 */
-typedef struct s_comps		// free
+typedef struct s_comps
 {
-	double		*world_p;	// free
-	double		*over_p;	// free
-	double		*eye_v;		// free
-	double		*norm_v;	// free
+	double		*world_p;
+	double		*over_p;
+	double		*eye_v;
+	double		*norm_v;
 	bool		inside;
 	t_object	*obj;
 }	t_comps;

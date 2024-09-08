@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 19:37:53 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/08 22:11:36 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-/*void	print_intersect(t_intersect *list)
+/*
+void	print_intersect(t_intersect *list)
 {
 	int	i;
 
@@ -23,6 +24,7 @@
 		list = list -> next;
 	}
 }
+*/
 
 void	print_vec(double *v, int size)
 {
@@ -52,6 +54,7 @@ void	print_vec(double *v, int size)
     printf("this is a %s: %f, %f, %f\n", str, v[0], v[1], v[2]);
 }
 
+/*
 void	print_world_info(t_world *w)
 {
 	t_object *obj;
@@ -80,6 +83,24 @@ void	print_world_info(t_world *w)
 	printf("bright: %f\namb colour: ", w->light_bright);
 	print_vec(w->amb_colour, -1);
 }
+*/
+static int	validate_input_file(char *filename)
+{
+	int		fd;
+	size_t	len;
+
+	len = ft_strlen(filename);
+	if (len < 3 || ft_strncmp(filename + len - 3, ".rt", 3) != 0)
+		return (print_error(1, "Expected .rt file\n"));
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		perror("Error opening file");
+		return (2);
+	}
+	close(fd);
+	return (0);
+}
 
 static void	escape(void *ptr)
 {
@@ -88,107 +109,48 @@ static void	escape(void *ptr)
 	mlx = (mlx_t *) ptr;
 	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
-}*/
-
-static void	free_cam(t_camera *cam)
-{
-	free(cam -> view_p);
-	free(cam -> norm_v);
-	free(cam -> transform);
-	free(cam -> inv_trans);
-	free(cam);
 }
 
-static void	free_object(t_object *obj)
+static t_world	*run_checks(int argc, char *argv[])
 {
-	free(obj -> obj_p);
-	free(obj -> norm_v);
-	free(obj -> transform);
-	free(obj -> inv_trans);
-	free(obj -> colour);
-	free(obj);
-}
+	t_world	*w;
 
-void	clean_up(t_world *w)
-{
-	int	i;
-
-	i = -1;
-	while (++i < w -> n_obj)
+	if (argc != 2)
 	{
-		if (w -> objects[i])
-			free_object(w -> objects[i]);
+		print_error(7, "too many parameters\n");
+		exit(1);
 	}
-	free(w -> objects);
-	free(w -> light_p);
-	free(w -> amb_colour);
-	if (w -> cam)
-		free_cam(w -> cam);
-	free(w);
+	if (validate_input_file(argv[1]))
+		exit(2);
+	else
+		printf("file name: valid!\n");
+	if (syntax_check(argv[1]))
+		exit(3);
+	else
+		printf("syntax check: pass!\n");
+	w = init_world(argv[1]);
+	if (semantic_check(w))
+		exit(4);
+	else
+		printf("semantics check: pass!\n");
+	return (w);
 }
 
-void handle_key(mlx_key_data_t keydata, void *param)
+int	main(int argc, char *argv[])
 {
-    mlx_t *mlx = (mlx_t *)param;
+	t_world			*w;
+	mlx_t			*mlx;
+	mlx_image_t		*image;
 
-    // Check if the ESC key was pressed and if it was pressed down
-    if (keydata.key == MLX_KEY_ESCAPE && keydata.action == MLX_PRESS)
-    {
-        mlx_terminate(mlx); // Terminate the MLX window
-        exit(0); // Exit the program cleanly
-    }
+	w = run_checks(argc, argv);
+	mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
+	image = mlx_new_image(mlx, HSIZE, VSIZE);
+	render(w, w -> cam, image);
+	mlx_image_to_window(mlx, image, 0, 0);
+	mlx_loop_hook(mlx, escape, (void *) mlx);
+	mlx_loop(mlx);
+	mlx_close_window(mlx);
+	mlx_terminate(mlx);
+	clean_up(w);
+	return (0);
 }
-
-int main(int argc, char *argv[])
-{
-    t_world *w;
-    mlx_t *mlx;
-    mlx_image_t *image;
-
-    // Check command-line arguments
-    if (argc != 2)
-        return (1);
-
-    // Validate input file
-    if (validate_input_file(argv[1]))
-        return (2);
-    else
-        printf("file name: valid!\n");
-
-    // Check syntax
-    if (syntax_check(argv[1]))
-        return (3);
-    else
-        printf("syntax check: pass!\n");
-
-    // Initialize world
-    w = init_world(argv[1]);
-
-    // Check semantics
-    if (semantic_check(w))
-        return (4);
-    else
-        printf("semantics check: pass!\n");
-
-    // Initialize MLX and create a new image
-    mlx = mlx_init(HSIZE, VSIZE, "MLX42", true);
-    image = mlx_new_image(mlx, HSIZE, VSIZE);
-
-    // Render the image
-    render(w, w->cam, image);
-    mlx_image_to_window(mlx, image, 0, 0);
-
-    // Register the key handler
-    mlx_key_hook(mlx, handle_key, mlx);
-
-    // Start the MLX event loop
-    mlx_loop(mlx);
-
-    // Cleanup and terminate
-    mlx_close_window(mlx);
-    mlx_terminate(mlx);
-    clean_up(w);
-
-    return (0);
-}
-
