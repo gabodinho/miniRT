@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabodinho <gabodinho@student.42.fr>        +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/04 12:40:40 by gabodinho        ###   ########.fr       */
+/*   Updated: 2024/09/08 18:59:30 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int			check_sphere(char *get_line);
 int			syntax_check(char *file);
 int			validate_input_file(char *filename);
 int			semantic_check(t_world *w);
+int			print_error(int ret_val, char *msg);
 
 
 // to be deleted

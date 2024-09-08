@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+         #
+#    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/09/03 21:10:04 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/09/08 18:58:34 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,9 @@ SRCS	:=	src/main.c \
 			src/init_camera.c \
 			src/init_world.c \
 			src/input_check_mrt.c \
-			src/validate_input.c
+			src/validate_input.c \
+			src/semantic_check_mrt.c
+
 
 OBJS	:= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
 
