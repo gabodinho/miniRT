@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:25:04 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/08 22:11:36 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:26:10 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_intersect(t_intersect *list)
 	}
 }
 */
-
+/*
 void	print_vec(double *v, int size)
 {
 	char	*str ;
@@ -53,7 +53,7 @@ void	print_vec(double *v, int size)
         str = "vector";
     printf("this is a %s: %f, %f, %f\n", str, v[0], v[1], v[2]);
 }
-
+*/
 /*
 void	print_world_info(t_world *w)
 {

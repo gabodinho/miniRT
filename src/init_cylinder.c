@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cylinder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/08 22:11:04 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/10 15:24:47 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,5 @@ t_object	*init_cylinder(char *input)
 	cyl -> colour = get_double_touple(&input, 2);
 	set_cylinder_trans(cyl);
 	cyl -> inv_trans = invert(cyl -> transform, 4);
-	print_vec(cyl -> norm_v, 0);
 	return (cyl);
 }
