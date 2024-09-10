@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shola_linux <shola_linux@student.42.fr>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 21:33:21 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/07 16:11:31 by shola_linux      ###   ########.fr       */
+/*   Updated: 2024/09/10 19:41:11 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,12 @@ t_camera	*init_camera(char *input)
 	get_double(&cam -> field_of_view, input);
 	calc_pixel_size(cam);
 	up = vector(0, 1, 0);
+	if (abs_f(dot_product(up, cam -> norm_v)) == 1)
+	{
+		free(up);
+		up = vector(0, 0, 1);
+		normalize(up);
+	}
 	cam -> transform = view_transform(cam -> view_p, cam -> norm_v, up);
 	cam -> inv_trans = invert(cam -> transform, 4);
 	free(up);
