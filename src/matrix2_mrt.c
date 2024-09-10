@@ -6,7 +6,7 @@
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 01:36:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/10 15:24:12 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:22:57 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,38 +34,52 @@ double	*scale(double x, double y, double z)
 	return (m);
 }
 
-double	*rot_x(double phi)
+static void	add_mat(double *a, double *b)
 {
-	double	*m;
+	int	i;
 
-	m = identity_matrix(4);
-	m[m2a(4, 1, 1)] = cos(phi);
-	m[m2a(4, 2, 2)] = cos(phi);
-	m[m2a(4, 1, 2)] = -sin(phi);
-	m[m2a(4, 2, 1)] = sin(phi);
-	return (m);
+	i = -1;
+	while (++i < 16)
+		a[i] += b[i];
 }
 
-double	*rot_y(double phi)
+static double	**get_skew_mat(double *r)
 {
-	double	*m;
+	double	**k;
 
-	m = identity_matrix(4);
-	m[m2a(4, 0, 0)] = cos(phi);
-	m[m2a(4, 2, 2)] = cos(phi);
-	m[m2a(4, 0, 2)] = sin(phi);
-	m[m2a(4, 2, 0)] = -sin(phi);
-	return (m);
+	k = malloc(sizeof(double *) * 2);
+	k[0] = malloc(sizeof(double) * 16);
+	k[1] = malloc(sizeof(double) * 16);
+	ft_memset(k[0], 0, 16 * sizeof(double));
+	ft_memset(k[1], 0, 16 * sizeof(double));
+	k[0][m2a(4, 0, 1)] = -r[2];
+	k[0][m2a(4, 1, 0)] = r[2];
+	k[0][m2a(4, 1, 2)] = -r[0];
+	k[0][m2a(4, 2, 1)] = r[0];
+	k[1] = mat_mat_prod(k[0], k[0]);
+	return (k);
 }
 
-double	*rot_z(double phi)
+double	*get_rot_mat(double *nv)
 {
-	double	*m;
+	double	**k;
+	double	*r;
+	double	*m_rot;
 
-	m = identity_matrix(4);
-	m[m2a(4, 0, 0)] = cos(phi);
-	m[m2a(4, 1, 1)] = cos(phi);
-	m[m2a(4, 0, 1)] = -sin(phi);
-	m[m2a(4, 1, 0)] = sin(phi);
-	return (m);
+	if (acos(nv[1]) == 0)
+		return (identity_matrix(4));
+	else if (acos(nv[1]) == M_PI)
+		r = vector(1, 0, 0);
+	else
+		r = vector(nv[2], 0, -nv[0]);
+	normalize(r);
+	k = get_skew_mat(r);
+	vec_skal_prod(k[0], sin(acos(nv[1])), 16);
+	vec_skal_prod(k[1], 1 - nv[1], 16);
+	m_rot = identity_matrix(4);
+	add_mat(m_rot, k[0]);
+	add_mat(m_rot, k[1]);
+	free(r);
+	free_ray(k);
+	return (m_rot);
 }

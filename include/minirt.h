@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/11 16:16:03 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/08 20:25:33 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:23:20 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,6 @@ t_intersect	*find_hit(t_intersect *lst);
 void		free_ray(double **ray);
 double		*translate(double x, double y, double z);
 double		*scale(double x, double y, double z);
-double		*rot_x(double phi);
-double		*rot_y(double phi);
-double		*rot_z(double phi);
 double		**transform(double **ray, double *m);
 double		*substract_points(double *a, double *b);
 double		**ray_for_pixel(t_camera *cam, int x, int y);
@@ -81,6 +78,7 @@ int			check_sphere(char *line);
 int			check_cylinder(char *line);
 int			check_plane(char *line);
 int			check_light(char *line);
+double		*get_rot_mat(double *nv);
 
 // to be deleted
 void		print_vec(double *v, int size);

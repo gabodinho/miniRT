@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/06 23:26:05 by ggiertzu          #+#    #+#              #
-#    Updated: 2024/09/08 20:25:58 by ggiertzu         ###   ########.fr        #
+#    Updated: 2024/09/10 19:23:38 by ggiertzu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

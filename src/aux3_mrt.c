@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   aux3_mrt.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:44:38 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/08 20:16:37 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:26:05 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	get_double(double *f, char *str)
 		i++;
 	if (str[i] == ',')
 		return (i + 1);
-	else if (str[i] == '\n' || str[i] == ' ')
+	else if (ft_strchr("\n\t ", str[i]))
 		return (i);
 	else
 		i++;
@@ -59,8 +59,7 @@ double	*get_double_touple(char **str, int kind)
 	i = -1;
 	while (++i < 3)
 		*str += get_double(temp + i, *str);
-	while (**str == ' ')
-		*str += 1;
+	*str += skip_empty(*str);
 	if (kind == 0)
 		return (point(temp[0], temp[1], temp[2]));
 	else if (kind == 1)

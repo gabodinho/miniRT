@@ -6,54 +6,22 @@
 /*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 23:26:07 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/10 15:27:09 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:25:49 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-/*
 static void	set_plane_trans(t_object *pl)
 {
-	double	*rot_x_;
-	double	*rot_y_;
+	double	*m_rot;
 	double	*translate_;
-	double	*temp;
 
-	rot_x_ = rot_x(acos(pl -> norm_v[1]));
-	rot_y_ = rot_y(acos(pl -> norm_v[2]));
+	m_rot = get_rot_mat(pl -> norm_v);
 	translate_ = translate(pl -> obj_p[0], pl -> obj_p[1], pl -> obj_p[2]);
-	temp = mat_mat_prod(rot_y_, rot_x_);
-	pl -> transform = mat_mat_prod(translate_, temp);
-	free(rot_x_);
-	free(rot_y_);
+	pl -> transform = mat_mat_prod(translate_, m_rot);
+	free(m_rot);
 	free(translate_);
-	free(temp);
-}
-*/
-
-static void	set_plane_trans(t_object *pl)
-{
-	double	*rot_x_;
-	double	*rot_y_;
-	double	*translate_;
-	double	*temp;
-
-	if (pl -> norm_v[2] >= 0)
-		rot_x_ = rot_x(acos(pl -> norm_v[1]));
-	else
-		rot_x_ = rot_x(-acos(pl -> norm_v[1]));
-	if (pl -> norm_v[0] >= 0)
-		rot_y_ = rot_y(acos(pl -> norm_v[2]));
-	else
-		rot_y_ = rot_y(-acos(pl -> norm_v[2]));
-	translate_ = translate(pl -> obj_p[0], pl -> obj_p[1], pl -> obj_p[2]);
-	temp = mat_mat_prod(rot_y_, rot_x_);
-	pl -> transform = mat_mat_prod(translate_, temp);
-	free(rot_x_);
-	free(rot_y_);
-	free(translate_);
-	free(temp);
 }
 
 /* input is str starting at first non empty char after pl identifier */

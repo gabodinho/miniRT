@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   semantic_check_mrt.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/08 18:39:36 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/08 20:15:19 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:02:42 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,11 @@ static int	check_boundaries(t_world *w)
 	res = 0;
 	i = -1;
 	while (++i < w -> n_obj)
+	{
 		res |= check_obj_bounds(w -> objects[i]);
+		if (res)
+			return (1);
+	}
 	res |= check_cam_light_bounds(w);
 	return (res);
 }
