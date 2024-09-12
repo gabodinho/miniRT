@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix2_mrt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggiertzu <ggiertzu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ggiertzu <ggiertzu@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 01:36:09 by ggiertzu          #+#    #+#             */
-/*   Updated: 2024/09/10 19:22:57 by ggiertzu         ###   ########.fr       */
+/*   Updated: 2024/09/12 23:05:29 by ggiertzu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,7 @@ static double	**get_skew_mat(double *r)
 
 	k = malloc(sizeof(double *) * 2);
 	k[0] = malloc(sizeof(double) * 16);
-	k[1] = malloc(sizeof(double) * 16);
 	ft_memset(k[0], 0, 16 * sizeof(double));
-	ft_memset(k[1], 0, 16 * sizeof(double));
 	k[0][m2a(4, 0, 1)] = -r[2];
 	k[0][m2a(4, 1, 0)] = r[2];
 	k[0][m2a(4, 1, 2)] = -r[0];
